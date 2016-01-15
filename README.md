@@ -17,3 +17,7 @@ The app will also allow listeners to stream their custom playlist based on their
 * Version 0.8.0 (Alpha) to be released on February 19, 2016
 * Version 0.9.0 (Beta) to be released on March 23, 2016
 * Version 1.0.0 (Stable) to be discussed
+
+##Wiki
+
+Some of the information of this README might be transferred to our [wiki](https://github.com/24hourkirtan/ionic-audio-streaming/wiki).
