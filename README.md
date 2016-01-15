@@ -21,3 +21,7 @@ The app will also allow listeners to stream their custom playlist based on their
 ##Wiki
 
 Some of the information of this README might be transferred to our [wiki](https://github.com/24hourkirtan/ionic-audio-streaming/wiki).
+
+##License
+
+This project is licensed under the GNU General Public License version 2.0 (GPLv2). For more information, see the LICENSE file in this repository. As Ionic itself is licensed under the MIT Open Source license we will have to verify how these two licenses are compatible with each other.
