@@ -25,22 +25,30 @@ Some of the information of this README might be transferred to our [wiki](https:
 #Installation
 
 Run the following commands first:
-<code>cordova plugin add https://github.com/keosuofficial/cordova-audio-stream-plugin.git</code>
-<code>cordova plugin add cordova-plugin-network-information</code>
+```
+cordova plugin add https://github.com/keosuofficial/cordova-audio-stream-plugin.git
+cordova plugin add cordova-plugin-network-information
+```
 
 Run the following additional commands for the respective platform:
 
 <h2> Android</h2>
-<code>cordova platform add android@5.0.0<br>
-cordova plugin add cordova-plugin-fullscreen<br>
-cordova build android</code>
+```
+cordova platform add android@5.0.0
+cordova plugin add cordova-plugin-fullscreen
+cordova build android
+```
 
 To test, run:
-<code>cordova run android</code>
+```
+cordova run android
+```
 
 <h2>iOS</h2>
-<code>cordova platform add ios<br>
-cordova build ios</code>
+```
+cordova platform add ios
+cordova build ios
+```
 
 To test, open the Xcode project in the "platforms/ios" project folder and deploy it to a test device or emulator.
 
