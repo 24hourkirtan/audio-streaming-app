@@ -1,0 +1,27 @@
+/* Empty. Add your own CSS if you like */
+.title { 
+	font-family: 'Dancing Script', Georgia, serif; 
+	font-weight: 400; 
+}
+
+.bar-custom {
+	background-color: black;
+}
+
+.title {
+	color: #DD9933 !important;
+	text-align: center !important;
+}
+
+.play-button{
+	background-color: #DD9933;
+	width: 50px;
+	padding-left: 8px;
+	left: 0 !important;
+}
+
+.item{
+	background-color: #6F4D1A;
+	color: white !important;
+	text-align: center
+}

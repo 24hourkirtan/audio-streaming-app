@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <!--<script src="js/ng-cordova.js"></script>-->
+    <script src="js/utilities.js"></script>
+  </head>
+  <body ng-app="starter" ng-controller="StreamController as vm">
+    <ion-pane>
+      <ion-header-bar class="bar-custom">
+        <h1 class="title">24 Hour Kirtan Radio</h1>
+      </ion-header-bar>
+      <ion-content scroll="false">
+        <div class="list card">
+          <div class="item item-image">
+            <img src="img/kirtan.jpg">
+          </div>
+        </div>
+
+        <div class="list card">
+          <div class="item item-image">
+            <img src="img/logo.png">
+          </div>
+
+          <a class="item item-icon-left item-text-wrap" href="#" ng-click="vm.togglePlay()">
+            <i class="icon play-button {{ vm.isPlaying ? 'ion-ios-pause' : 'ion-ios-play' }}"></i>
+            {{vm.info.title || 'Start Listening'}}
+          </a>
+        </div>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
