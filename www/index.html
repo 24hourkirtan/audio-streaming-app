@@ -7,16 +7,18 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Dancing%20Script" rel="stylesheet" type="text/css">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+<!-- <script src="cordova.js"></script> -->
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -43,8 +45,8 @@
           </div>
 
           <a class="item item-icon-left item-text-wrap" href="#" ng-click="vm.togglePlay()">
-            <i class="icon play-button {{ vm.isPlaying ? 'ion-ios-pause' : 'ion-ios-play' }}"></i>
-            {{vm.info.title || 'Start Listening'}}
+            <i class="icon play-button {{ vm.isPlaying ? &apos;ion-ios-pause&apos; : &apos;ion-ios-play&apos; }}"></i>
+            {{vm.info.title || &apos;Start Listening&apos;}}
           </a>
         </div>
       </ion-content>

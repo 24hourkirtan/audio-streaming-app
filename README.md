@@ -23,10 +23,26 @@ The app will also allow listeners to stream their custom playlist based on their
 Some of the information of this README might be transferred to our [wiki](https://github.com/24hourkirtan/ionic-audio-streaming/wiki).
 
 #Installation
-Run the following commands:
 
-<code>cordova plugin add https://github.com/keosuofficial/cordova-audio-stream-plugin.git
-cordova plugin add cordova-plugin-network-information</code>
+Run the following commands first:
+<code>cordova plugin add https://github.com/keosuofficial/cordova-audio-stream-plugin.git</code>
+<code>cordova plugin add cordova-plugin-network-information</code>
+
+Run the following additional commands for the respective platform:
+
+<h2> Android</h2>
+<code>cordova platform add android@5.0.0</code>
+<code>cordova plugin add cordova-plugin-fullscreen</code>
+<code>cordova build android</code>
+
+To test, run:
+<code>cordova run android</code>
+
+<h2>iOS</h2>
+<code>cordova platform add ios</code>
+<code>cordova build ios</code>
+
+To test, open the Xcode project in the "platforms/ios" project folder and deploy it to a test device or emulator.
 
 ##License
 
