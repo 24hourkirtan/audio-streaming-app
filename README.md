@@ -31,16 +31,16 @@ Run the following commands first:
 Run the following additional commands for the respective platform:
 
 <h2> Android</h2>
-<code>cordova platform add android@5.0.0</code>
-<code>cordova plugin add cordova-plugin-fullscreen</code>
-<code>cordova build android</code>
+<code>cordova platform add android@5.0.0<br>
+cordova plugin add cordova-plugin-fullscreen<br>
+cordova build android</code>
 
 To test, run:
 <code>cordova run android</code>
 
 <h2>iOS</h2>
-<code>cordova platform add ios</code>
-<code>cordova build ios</code>
+<code>cordova platform add ios<br>
+cordova build ios</code>
 
 To test, open the Xcode project in the "platforms/ios" project folder and deploy it to a test device or emulator.
 
