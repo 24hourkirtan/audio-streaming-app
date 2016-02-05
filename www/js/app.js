@@ -10,8 +10,24 @@ angular.module('starter', [
   'ngCordova',
   'utilitiesModule'
 ])
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicPopup) {
   $ionicPlatform.ready(function() {
+    $ionicPlatform.registerBackButtonAction(function () {
+        var confirmPopup = $ionicPopup.confirm({
+         template: 'Are you sure you want to exit?',
+         buttons: [
+          { text: 'No' },
+          {
+            text: '<b>Yes</b>',
+            type: 'button-assertive',
+            onTap: function(e) {
+              navigator.app.exitApp();
+            }
+          },
+        ]
+       });
+    }, 101);
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)

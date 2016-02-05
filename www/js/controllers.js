@@ -75,6 +75,11 @@ angular.module('starter.controllers', [])
   function getStreamInfo() {
     streamService.getStreamInfo().then(function(info) {
       vm.info = info;
+      if(vm.info.title){
+        var elem = document.createElement('textarea');
+        elem.innerHTML = vm.info.title;
+        vm.info.title = elem.value;
+      }
     }, function() {
       vm.info = null;
     });
