@@ -37,7 +37,6 @@ Run the following additional commands for the respective platform:
 <h2> Android</h2>
 ```
 cordova platform add android@5.0.0
-cordova plugin add cordova-plugin-fullscreen
 cordova build android
 ```
 

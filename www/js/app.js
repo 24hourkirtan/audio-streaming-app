@@ -42,14 +42,6 @@ angular.module('starter', [
       StatusBar.styleDefault();
     }
 
-    if ( ionic.Platform.isAndroid()){
-        AndroidFullScreen.immersiveMode(function(){
-          console.log("immersive mode on");
-        }, function(){
-          console.log("immersive mode off");
-        });
-    } else {
-        ionic.Platform.fullScreen();
-    }
+    ionic.Platform.fullScreen();
   });
 });
