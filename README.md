@@ -24,6 +24,8 @@ Some of the information of this README might be transferred to our [wiki](https:
 
 #Installation
 
+First, install Node.js 4 (Node 5 does not work at the moment!). Then, install the latest Cordova and Ionic command-line tools. Follow the Android and iOS platform guides to install required platform dependencies. More details on http://ionicframework.com/getting-started/.
+
 Run the following commands first:
 ```
 cordova plugin add https://github.com/keosuofficial/cordova-audio-stream-plugin.git
