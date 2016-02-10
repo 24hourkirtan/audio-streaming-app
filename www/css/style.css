@@ -25,3 +25,15 @@
 	color: white !important;
 	text-align: center
 }
+
+.bottom {
+	bottom: 0;
+	position: fixed;
+	margin: 0;
+	margin-bottom: 10px !important;
+	width: 100%;
+}
+
+.pane { 
+	background: url(../img/kirtan.jpg) no-repeat !important;
+}
