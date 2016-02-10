@@ -32,17 +32,7 @@
         <h1 class="title">24 Hour Kirtan Radio</h1>
       </ion-header-bar>
       <ion-content scroll="false">
-        <div class="list card">
-          <div class="item item-image">
-            <img src="img/kirtan.jpg">
-          </div>
-        </div>
-
-        <div class="list card">
-          <div class="item item-image">
-            <img src="img/logo.png">
-          </div>
-
+        <div class="list card bottom full-width">
           <a class="item item-icon-left item-text-wrap" href="#" ng-click="vm.togglePlay()">
             <i class="icon play-button {{ vm.isPlaying ? 'ion-ios-pause' : 'ion-ios-play' }}"></i>
             {{vm.info.title || 'Start Listening'}}

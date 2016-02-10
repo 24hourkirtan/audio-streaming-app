@@ -1,5 +1,5 @@
 /* Empty. Add your own CSS if you like */
-.title { 
+.title {
 	font-family: 'Dancing Script', Georgia, serif; 
 	font-weight: 400; 
 }
@@ -24,4 +24,16 @@
 	background-color: #6F4D1A;
 	color: white !important;
 	text-align: center
+}
+
+.bottom {
+	bottom: 0;
+	position: fixed;
+	margin: 0;
+	margin-bottom: 10px !important;
+	width: 100%;
+}
+
+.pane { 
+	background: url(../img/kirtan.jpg) no-repeat !important;
 }
