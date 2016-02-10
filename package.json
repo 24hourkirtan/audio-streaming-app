@@ -28,11 +28,7 @@
     "cordova-plugin-network-information"
   ],
   "cordovaPlatforms": [
-    {
-      "platform": "android",
-      "version": "5.0.0",
-      "locator": "android@5.0.0"
-    },
+    "android",
     "ios"
   ]
 }
