@@ -50,7 +50,7 @@ cordova run android
 
 If the iOS platform wasn't added, run:
 ```
-cordova platform add ios
+cordova platform add ios@3.8.0
 cordova build ios
 ```
 
