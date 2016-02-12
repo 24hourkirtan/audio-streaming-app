@@ -79,11 +79,30 @@ angular.module('starter.controllers', [])
         var elem = document.createElement('textarea');
         elem.innerHTML = vm.info.title;
         vm.info.title = elem.value;
+
+ 
+		  title = "One More Time";
+		  image = "../img/kirtan.jpg";
+		  //elapsedTime = my_media.getElapsedTime();
+
+		  var params = [null, title, null, image, null, elapsedTime];
+		  window.remoteControls.updateMetas(function(success){
+		      console.log(success);
+		  }, function(fail){
+		      console.log(fail);
+		  }, params);
+
       }
     }, function() {
       vm.info = null;
     });
   }
+
+	//listen for the event
+	document.addEventListener("remote-event", function(event) {
+		//if(event.remoteEvent.subtype == "pause")
+		togglePlay();
+	})
 
   document.addEventListener("deviceready", function () {
 

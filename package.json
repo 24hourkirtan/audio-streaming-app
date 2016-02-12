@@ -15,20 +15,32 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
+    "cordova-plugin-network-information",
+    {
+      "locator": "https://github.com/keosuofficial/cordova-audio-stream-plugin.git",
+      "id": "com.keosu.cordova.stream"
+    },
+    {
+      "locator": "https://github.com/shi11/RemoteControls.git",
+      "id": "com.rd11.remote-controls"
+    },
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
-    {
-      "locator": "https://github.com/keosuofficial/cordova-audio-stream-plugin.git",
-      "id": "com.keosu.cordova.stream"
-    },
-    "cordova-plugin-network-information"
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
-    "android",
-    "ios"
+    {
+      "platform": "ios",
+      "version": "3.8.0",
+      "locator": "ios@3.8.0"
+    },
+    {
+      "platform": "android",
+      "version": "5.0.0",
+      "locator": "android@5.0.0"
+    }
   ]
 }
