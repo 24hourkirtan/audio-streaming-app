@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.kirtanradio392459" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.kirtanradio392459" version="0.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>24 Hour Kirtan Radio</name>
   <description>
-        An Ionic Framework and Cordova project.
+        An Ionic Framework and Cordova project for audio streaming and playlists.
     </description>
   <author email="you@example.com" href="http://example.com.com/">
       Your Name Here
