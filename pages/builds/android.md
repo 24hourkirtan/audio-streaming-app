@@ -43,7 +43,7 @@ android:versionCode="800" android:versionName="0.8.0"
 <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23"/>
 ```
 
-
+___
 ### Signing Key
 This step only needs to be performed once. The key that is created can be used for each release. Once this key has been used to deploy to the Play Store it cannot be changed.
 
@@ -76,7 +76,7 @@ What is the two-letter country code for this unit?
   [Unknown]:  CH
 ```
 
-
+___
 ### Sign the APK file
 Move to the root of the ~/24_keystore directory and move a copy of android-release-unsigned.apk into it.
 
@@ -86,12 +86,12 @@ Move to the root of the ~/24_keystore directory and move a copy of android-relea
 cd ~/Development/24_keystore
 cp ~/Development/ionic-audio-streaming/platforms/android/build/outputs/apk/android-release-unsigned.apk android-release-unsigned.apk
 ```
-
+___
 ### Run jarsigner
 ```
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore 24hourkirtan.keystore android-release-unsigned.apk 24hourkirtan
 ```
-
+___
 ### Create the new APK
 ```
 ~/Development/android-sdk-macosx/build-tools/22.0.1/zipalign -f -v 4 android-release-unsigned.apk 24HourKirtan.apk
@@ -99,8 +99,9 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore 24hourkirtan.ke
 
 (Optional) Cowboy test the APK file on desired Android devices. Attach the APK file to an email for quick install.
 
+___
 ### Create GitHub Release
-This document uses GitHub as an example for releases but BitBucket, GitLab, or any other respository could be used. The final APK nows goes to GitHub as a "tagged release". Commit changes for the config.xml and package.json files before the tagged release.
+This document uses GitHub as an example for releases but BitBucket, GitLab, or any other repository could be used. The final APK nows goes to GitHub as a "tagged release". Commit changes for the config.xml and package.json files before the tagged release.
 
 ```
 git add config.xml
@@ -112,6 +113,7 @@ Verify file changes in the remote repository.
 
 Create a new release on GitHub using previous release as a model.
 
+___
 ### Play Store
 See the document: Builds > [Play Store](index.html?md=pages_builds_playstore.md).
 
