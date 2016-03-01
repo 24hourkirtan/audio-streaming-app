@@ -41,12 +41,13 @@
                $.urlParam = function(name){
                 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
                   if(name == 'md' && results == null){
-                      return "index.md"
+                      return "pages_introduction.md"
                   }
                 	return results[1] || 0;
               }
               var md = $.urlParam('md');
               var url = md.replace(/_/g, '/');
+              console.log(url);
               // Add timestamp to prevent github page caching
               url = url+'?'+Date.now();
               $.get(url, "", function(response) {
