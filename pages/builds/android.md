@@ -1,12 +1,12 @@
 <div class="page-header">
-  <h1  id="page-title">Builds > Android</h1>
+  <h1  id="page-title">Releases > Android</h1>
 </div>
 
 Detailed instructions on how to prepare a build releases for Android. CLI commands are MAC or Linux based. Windows users must adjust syntax.
 
 ___
 ### Update the config.xml file
-A few attributes need to be changed prior to creating a release build by adjusting the version number and version-code. If the version-code is not set the SDK build will create one based on the version number. Be sure that the (id) in the widget element is correctly set and has not been changed.
+A few attributes need to be verified prior to creating a release build by adjusting the version number and version-code. If the version-code is not set the SDK build will create one based on the version number. Be sure that the (id) in the widget element is correctly set and has not been changed.
 
 Set attributes in the widget element.
 ```
@@ -101,20 +101,10 @@ ___
 
 ___
 ### Create GitHub Release
-This document uses GitHub as an example for releases but BitBucket, GitLab, or any other repository could be used. The final APK nows goes to GitHub as a "tagged release". Commit changes for the config.xml and package.json files before the tagged release.
-
-```
-git add config.xml
-git add package.json
-git commit =m "tagged release tag v0.8.0"
-```
-
-Verify file changes in the remote repository.
-
-Create a new release on GitHub using previous release as a model.
+See the document: Releases > [GitHub Release](index.html?md=pages_builds_github-release.md).
 
 ___
 ### Play Store
-See the document: Builds > [Play Store](index.html?md=pages_builds_playstore.md).
+See the document: Releases > [Play Store](index.html?md=pages_builds_playstore.md).
 
 ---------

@@ -1,9 +1,14 @@
 <div class="page-header">
-  <h1  id="page-title">Builds > Apple App Store</h1>
+  <h1  id="page-title">Releases > Apple App Store</h1>
 </div>
 
-Uploading and/or updating the APK build on the App Store.
+This section provides management tips for an Archive that has been uploaded to iTunesConnect
+using Xcode.
 
+___
 ### App Store Console
 
----------
+
+
+
+___
