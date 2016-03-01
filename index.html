@@ -47,6 +47,8 @@
               }
               var md = $.urlParam('md');
               var url = md.replace(/_/g, '/');
+              // Add timestamp to prevent github page caching
+              url = url+'?'+Date.now();
               $.get(url, "", function(response) {
                   highlightMenu("#"+md.replace('.','-').replace(/_/g,'-'));
                   var txt = document.getElementById('markdown').innerHTML.replace(/&gt;/g,'>').replace(/&lt;/g,'<');
