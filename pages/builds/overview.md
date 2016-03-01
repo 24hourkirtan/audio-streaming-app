@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1  id="page-title">Builds Overview</h1>
+  <h1  id="page-title">Builds</h1>
 </div>
 
 This section details the build process to produce both the IPA and APK files
