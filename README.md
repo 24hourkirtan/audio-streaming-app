@@ -1,4 +1,4 @@
-#Open Source Audio Streaming App
+#Audio Streaming App
 
 We're an Internet radio station in the process of building an open source mobile audio streaming app that can be used by anyone who wants to create their own Spotify-like app. The idea is to use the advanced [Ionic](http://ionicframework.com) HTML5 hybrid mobile app framework to create both an Android and iOS app based on the same code.
 
