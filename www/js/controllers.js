@@ -80,17 +80,22 @@ angular.module('starter.controllers', [])
         elem.innerHTML = vm.info.title;
         vm.info.title = elem.value;
 
- 
-		  title = "One More Time";
-		  image = "../img/kirtan.jpg";
-		  //elapsedTime = my_media.getElapsedTime();
+        var details = vm.info.title.split('-');
 
-		  var params = [null, title, null, image, null, elapsedTime];
-		  window.remoteControls.updateMetas(function(success){
-		      console.log(success);
-		  }, function(fail){
-		      console.log(fail);
-		  }, params);
+        title = details.length > 1 ? details[0] : vm.info.title;
+        artist = details.length > 1 ? details[1] : "";
+        album = "";
+        image = "http://24hourkirtan.fm/wp-content/uploads/2011/08/24-Hour-Kirtan-Logo-300x300.jpg";
+        duration = 0;
+        elapsedTime = 0;
+        
+        var params = [artist, title, album, image, duration, elapsedTime];
+        window.remoteControls.updateMetas(function(success){
+            console.log(success);
+        }, function(fail){
+            console.log(fail);
+        }, params);
+
 
       }
     }, function() {
