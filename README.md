@@ -31,9 +31,25 @@ First, run the following command:
 ionic state restore
 ```
 
+<h2>Android</h2>
+
+Then, run
+```
+cordova platform add android@5.0.0
+cordova plugin add cordova-plugin-media@0.2.14
+cordova plugin add https://github.com/24hourkirtan/cordova-music-controls-plugin
+```
+
 <h2>iOS</h2>
 
-Follow the instructions in the "Installation" section located here: https://github.com/shi11/RemoteControls
+Then, run
+```
+cordova platform add ios@3.9.2
+cordova plugin add https://github.com/keosuofficial/cordova-audio-stream-plugin.git
+cordova plugin add com.rd11.remote-controls
+```
+
+Then follow the instructions in the "Installation" section located here: https://github.com/shi11/RemoteControls
 
 #Testing
 
