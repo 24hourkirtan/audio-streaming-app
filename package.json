@@ -17,10 +17,6 @@
   "cordovaPlugins": [
     "cordova-plugin-network-information",
     {
-      "locator": "https://github.com/keosuofficial/cordova-audio-stream-plugin.git",
-      "id": "com.keosu.cordova.stream"
-    },
-    {
       "locator": "https://github.com/shi11/RemoteControls.git",
       "id": "com.rd11.remote-controls"
     },
@@ -29,7 +25,8 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-media@0.2.14"
   ],
   "cordovaPlatforms": [
     {

@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-.controller('StreamController', function($interval, streamService, $cordovaNetwork, $rootScope, UtilitiesFactory) {
+.controller('StreamController', function($interval, $ionicLoading, streamService, $cordovaNetwork, $scope, $rootScope, UtilitiesFactory, AudioFactory) {
 
   var streamUrl = {
     hiFiMode: true,
@@ -8,8 +8,26 @@ angular.module('starter.controllers', [])
   };
 
   var isPlaying = false;
-  var stream;
   var timer;
+
+	$scope.$on('status', function(event, status){
+    	$scope.$apply(function(){
+	    	if(status == Media.MEDIA_STARTING){
+	    		//$scope.state.status = "Loading audio...";
+	    		$ionicLoading.show({
+			      template: 'Loading...'
+			    });
+	    	}
+	    	else if(status == Media.MEDIA_RUNNING){
+	    		//$scope.state.status = "Playing...";
+	    		$ionicLoading.hide();
+	    	}
+	    	else if(status == Media.MEDIA_STOPPED){
+		    	//$scope.state.status = "Stopped.";
+		        vm.isPlaying = false;
+	    	}
+    	});
+    });
 
   // Periodically check internet connection type and switch icecast server if changed
   var connectionTimer = $interval(function() {
@@ -48,28 +66,23 @@ angular.module('starter.controllers', [])
     } else {
       play();
     }
-    vm.isPlaying = isPlaying = !isPlaying;
   }
 
   function play() {
-    if (window.Stream) {
-      stream = new window.Stream(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
-      // Play audio
-      stream.play();
-    }
-    getStreamInfo();
-    timer = $interval(function() {
-        getStreamInfo();
-    }, 5000);
+  	AudioFactory.playAudio(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi).then(function(success){
+  		vm.isPlaying = true;
+  		getStreamInfo();
+	    timer = $interval(function() {
+	        getStreamInfo();
+	    }, 5000);
+  	})
   }
 
   function pause() {
-    vm.info = null;
-    $interval.cancel(timer);
-    if (!stream) {
-      return;
-    }
-    stream.stop();
+  	AudioFactory.stopAudio().then(function(success){
+  		vm.info = null;
+  		$interval.cancel(timer);
+  	})
   }
 
   function getStreamInfo() {
@@ -82,20 +95,86 @@ angular.module('starter.controllers', [])
 
         var details = vm.info.title.split('-');
 
-        title = details.length > 1 ? details[0] : vm.info.title;
+        track = details.length > 1 ? details[0] : vm.info.title;
         artist = details.length > 1 ? details[1] : "";
         album = "";
-        image = "http://24hourkirtan.fm/wp-content/uploads/2011/08/24-Hour-Kirtan-Logo-300x300.jpg";
+        image = "../img/art.jpg";
         duration = 0;
         elapsedTime = 0;
         
-        var params = [artist, title, album, image, duration, elapsedTime];
-        window.remoteControls.updateMetas(function(success){
-            console.log(success);
-        }, function(fail){
-            console.log(fail);
-        }, params);
+        var params = [artist, track, album, image, duration, elapsedTime];
 
+        if(ionic.Platform.isIOS()){
+	        window.remoteControls.updateMetas(function(success){
+	            console.log(success);
+	        }, function(fail){
+	            console.log(fail);
+	        }, params);
+        }
+        else{
+        	MusicControls.create({
+			    track       : track,        // optional, default : ''
+			    artist      : artist,                       // optional, default : ''
+			    cover       : image,      // optional, default : nothing
+			    isPlaying   : true,                         // optional, default : true
+			    dismissable : true,                         // optional, default : false
+
+			    // hide previous/next/close buttons:
+			    hasPrev   : false,      // show previous button, optional, default: true
+			    hasNext   : false,      // show next button, optional, default: true
+			    hasClose  : true,       // show close button, optional, default: false
+
+			    // Android only, optional
+			    // text displayed in the status bar when the notification (and the ticker) are updated
+			    ticker    : 'Now playing ' + track
+			}, function(success){
+				//console.log(success);
+
+				function events(action) {
+				    switch(action) {
+				        case 'music-controls-next':
+				            // Do something
+				            break;
+				        case 'music-controls-previous':
+				            // Do something
+				            break;
+				        case 'music-controls-pause':
+				            pause();
+				            MusicControls.updateIsPlaying(false);
+				            break;
+				        case 'music-controls-play':
+				            play();
+				            MusicControls.updateIsPlaying(true);
+				            break;
+				        case 'music-controls-destroy':
+				            // Do something
+				            break;
+				        // Headset events (Android only)
+				        case 'music-controls-media-button' :
+				            // Do something
+				            break;
+				        case 'music-controls-headset-unplugged':
+				            // Do something
+				            break;
+				        case 'music-controls-headset-plugged':
+				            // Do something
+				            break;
+				        default:
+				            break;
+				    }
+				}
+
+				// Register callback
+				MusicControls.subscribe(events);
+
+				// Start listening for events
+				// The plugin will run the events function each time an event is fired
+				MusicControls.listen();
+
+			}, function(error){
+				console.log(error);
+			});
+        }
 
       }
     }, function() {

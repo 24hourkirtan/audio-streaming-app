@@ -21,6 +21,13 @@ angular.module('starter', [
             text: '<b>Yes</b>',
             type: 'button-assertive',
             onTap: function(e) {
+              if(MusicControls){
+                MusicControls.destroy(function(success){
+                  console.log(success);
+                }, function(error){
+                  console.log(error);
+                });
+              }
               navigator.app.exitApp();
             }
           },
