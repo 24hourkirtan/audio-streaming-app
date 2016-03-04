@@ -22,12 +22,7 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-network-information",
-    "cordova-plugin-file",
-    {
-      "locator": "https://github.com/24hourkirtan/cordova-music-controls-plugin",
-      "id": "cordova-plugin-music-controls"
-    },
-    "org.apache.cordova.media@0.2.14"
+    "cordova-plugin-file"
   ],
   "cordovaPlatforms": [
     {
