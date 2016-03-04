@@ -27,11 +27,7 @@
       "locator": "https://github.com/24hourkirtan/cordova-music-controls-plugin",
       "id": "cordova-plugin-music-controls"
     },
-    "org.apache.cordova.media",
-    {
-      "locator": "https://github.com/keosuofficial/cordova-audio-stream-plugin.git",
-      "id": "com.keosu.cordova.stream"
-    }
+    "org.apache.cordova.media@0.2.14"
   ],
   "cordovaPlatforms": [
     {
