@@ -46,7 +46,7 @@ Then, run
 ```
 cordova platform add ios@3.9.2
 cordova plugin add https://github.com/keosuofficial/cordova-audio-stream-plugin.git
-cordova plugin add com.rd11.remote-controls
+cordova plugin add https://github.com/shi11/RemoteControls
 ```
 
 Then follow the instructions in the "Installation" section located here: https://github.com/shi11/RemoteControls
