@@ -15,18 +15,23 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "cordova-plugin-network-information",
-    {
-      "locator": "https://github.com/shi11/RemoteControls.git",
-      "id": "com.rd11.remote-controls"
-    },
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "cordova-plugin-media@0.2.14"
+    "cordova-plugin-network-information",
+    "cordova-plugin-file",
+    {
+      "locator": "https://github.com/24hourkirtan/cordova-music-controls-plugin",
+      "id": "cordova-plugin-music-controls"
+    },
+    "org.apache.cordova.media",
+    {
+      "locator": "https://github.com/keosuofficial/cordova-audio-stream-plugin.git",
+      "id": "com.keosu.cordova.stream"
+    }
   ],
   "cordovaPlatforms": [
     {

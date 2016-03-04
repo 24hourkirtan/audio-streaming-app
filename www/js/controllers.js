@@ -98,7 +98,7 @@ angular.module('starter.controllers', [])
         track = details.length > 1 ? details[0] : vm.info.title;
         artist = details.length > 1 ? details[1] : "";
         album = "";
-        image = "../img/art.jpg";
+        image = "https://s3.amazonaws.com/strollio/art.jpg";
         duration = 0;
         elapsedTime = 0;
         
