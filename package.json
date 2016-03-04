@@ -1,7 +1,7 @@
 {
-  "name": "kirtanradio",
+  "name": "io.kirtan.audiostreaming",
   "version": "0.8.0",
-  "description": "kirtanradio: An Ionic project",
+  "description": "24 Hour Kirtan Radio",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
