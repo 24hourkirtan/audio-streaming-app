@@ -9,6 +9,7 @@ angular.module('starter.controllers', [])
 
   var isPlaying = false;
   var timer;
+  var loading = false;
 
 	$scope.$on('status', function(event, status){
     	$scope.$apply(function(){
@@ -17,14 +18,16 @@ angular.module('starter.controllers', [])
 	    		$ionicLoading.show({
 			      template: 'Loading...'
 			    });
+          loading = true;
 	    	}
 	    	else if(status == Media.MEDIA_RUNNING){
 	    		//$scope.state.status = "Playing...";
 	    		$ionicLoading.hide();
+          loading = false;
 	    	}
 	    	else if(status == Media.MEDIA_STOPPED){
 		    	//$scope.state.status = "Stopped.";
-		        vm.isPlaying = false;
+            loading = false;
 	    	}
     	});
     });
@@ -81,6 +84,8 @@ angular.module('starter.controllers', [])
   function pause() {
   	AudioFactory.stopAudio().then(function(success){
   		vm.info = null;
+      vm.isPlaying = false;
+      $ionicLoading.hide();
   		$interval.cancel(timer);
   	})
   }
