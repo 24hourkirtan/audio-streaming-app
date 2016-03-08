@@ -37,9 +37,9 @@ ionic state restore
 
 Then, run
 ```
-cordova platform add android@5.0.0
+cordova platform add android
 cordova plugin add cordova-plugin-media@0.2.14
-cordova plugin add https://github.com/24hourkirtan/cordova-music-controls-plugin
+cordova plugin add https://github.com/homerours/cordova-music-controls-plugin
 ```
 
 <h2>iOS</h2>

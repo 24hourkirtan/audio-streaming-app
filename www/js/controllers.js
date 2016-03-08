@@ -1,13 +1,52 @@
 angular.module('starter.controllers', [])
 .controller('StreamController', function($interval, $ionicLoading, streamService, $cordovaNetwork, $scope, $rootScope, UtilitiesFactory, AudioFactory) {
 
-  var streamUrl = {
-    hiFiMode: true,
-    hiFi: 'http://icecast.24hourkirtan.fm:8000/128k.mp3',
-    loFi: 'http://icecast.24hourkirtan.fm:8000/64k.mp3'
+  var streamUrl;
+  document.addEventListener("deviceready", function () {
+    // listen for Online event
+    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+      UtilitiesFactory.showToast("Device is online! Press play to resume listening.");
+      //vm.isPlaying = true;
+      //play();
+    })
+
+    // listen for Offline event
+    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+      UtilitiesFactory.showToast("Device is offline!");
+      vm.isPlaying = false;
+      pause();
+      if(MusicControls)
+        MusicControls.updateIsPlaying(false);
+    })
+
+    streamUrl = {
+      hiFiMode: isHighBandwidth() ? true : false,
+      hiFi: 'http://icecast.24hourkirtan.fm:8000/128k.mp3',
+      loFi: 'http://icecast.24hourkirtan.fm:8000/64k.mp3'
+    };
+
+    // Initialization
+    AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
+
+  }, false);
+
+  var isHighBandwidth = function(){
+    return $cordovaNetwork.getNetwork() == Connection.CELL_4G ||
+        $cordovaNetwork.getNetwork() == Connection.ETHERNET || 
+        $cordovaNetwork.getNetwork() == Connection.WIFI;
   };
 
-  var isPlaying = false;
+  var vm = angular.extend(this, {
+    togglePlay: function(){
+      if (vm.isPlaying)
+        pause();
+      else
+        play();
+    },
+    isPlaying: false,
+    info: null
+  });
+
   var timer;
   var loading = false;
 
@@ -27,21 +66,21 @@ angular.module('starter.controllers', [])
 	    	}
 	    	else if(status == Media.MEDIA_STOPPED){
 		    	//$scope.state.status = "Stopped.";
-            loading = false;
+          loading = false;
 	    	}
     	});
     });
 
   // Periodically check internet connection type and switch icecast server if changed
   var connectionTimer = $interval(function() {
-      if($cordovaNetwork.getNetwork() == Connection.CELL_4G ||
-        $cordovaNetwork.getNetwork() == Connection.ETHERNET || 
-        $cordovaNetwork.getNetwork() == Connection.WIFI){
+      if(isHighBandwidth()){
         if(streamUrl.hiFiMode == false){
           UtilitiesFactory.showToast("Switching to high-bandwidth mode...");
           streamUrl.hiFiMode = true;
           if(vm.isPlaying){
-            pause();
+            //pause();
+            AudioFactory.stop();
+            AudioFactory.init(streamUrl.hiFi);
             play();
           }
         }
@@ -50,29 +89,17 @@ angular.module('starter.controllers', [])
           UtilitiesFactory.showToast("Switching to low-bandwidth mode...");
           streamUrl.hiFiMode = false;
           if(vm.isPlaying){
-            pause();
+            //pause();
+            AudioFactory.stop();
+            AudioFactory.init(streamUrl.loFi);
             play();
           }
         }
       }
   }, 5000);
 
-  var vm = angular.extend(this, {
-    togglePlay: togglePlay,
-    isPlaying: isPlaying,
-    info: null
-  });
-  
-  function togglePlay() {
-    if (vm.isPlaying) {
-      pause();
-    } else {
-      play();
-    }
-  }
-
   function play() {
-  	AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
+  	//AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
     AudioFactory.play();
 		vm.isPlaying = true;
 		getStreamInfo();
@@ -86,7 +113,7 @@ angular.module('starter.controllers', [])
     vm.isPlaying = false;
     $ionicLoading.hide();
     $interval.cancel(timer);
-    AudioFactory.stop();
+    AudioFactory.pause();
   }
 
   function getStreamInfo() {
@@ -184,28 +211,10 @@ angular.module('starter.controllers', [])
 	//listen for the event
   if(ionic.Platform.isIOS()){
   	document.addEventListener("remote-event", function(event) {
-  		if(event.remoteEvent.subtype == "pause"){
+  		if(event.remoteEvent.subtype == "pause")
         pause();
-      }
-      else if(event.remoteEvent.subtype == "play"){
+      else if(event.remoteEvent.subtype == "play")
         play();
-      }
   	});
   }
-
-  document.addEventListener("deviceready", function () {
-      // listen for Online event
-      $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-        UtilitiesFactory.showToast("Device is online! Press play to resume listening.");
-        //vm.isPlaying = true;
-        //play();
-      })
-
-      // listen for Offline event
-      $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-        UtilitiesFactory.showToast("Device is offline!");
-        vm.isPlaying = false;
-        pause();
-      })
-    }, false);
 });
