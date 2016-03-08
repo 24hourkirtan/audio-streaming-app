@@ -66,6 +66,13 @@ cordova run android
 
 Open the Xcode project in the "platforms/ios" project folder and deploy it to a test device or emulator.
 
+##Using Your Own Logo and Splash
+
+Place your logo and splash image files in the "resources/" folder and rename them to "icon.png" and "splash.png", respectively. Then run the following command:
+```
+ionic resources
+```
+
 ##License
 
 This project is licensed under the GNU General Public License version 2.0 (GPLv2). For more information, see the LICENSE file in this repository. As Ionic itself is licensed under the MIT Open Source license we will have to verify how these two licenses are compatible with each other.
