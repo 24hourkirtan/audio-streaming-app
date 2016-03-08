@@ -62,7 +62,7 @@ angular.module('starter.controllers', [])
     isPlaying: isPlaying,
     info: null
   });
-  // *********************************************************************
+  
   function togglePlay() {
     if (vm.isPlaying) {
       pause();
@@ -72,22 +72,21 @@ angular.module('starter.controllers', [])
   }
 
   function play() {
-  	AudioFactory.playAudio(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi).then(function(success){
-  		vm.isPlaying = true;
-  		getStreamInfo();
-	    timer = $interval(function() {
-	        getStreamInfo();
-	    }, 5000);
-  	})
+  	AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
+    AudioFactory.play();
+		vm.isPlaying = true;
+		getStreamInfo();
+    timer = $interval(function() {
+        getStreamInfo();
+    }, 5000);
   }
 
   function pause() {
-  	AudioFactory.stopAudio().then(function(success){
-  		vm.info = null;
-      vm.isPlaying = false;
-      $ionicLoading.hide();
-  		$interval.cancel(timer);
-  	})
+    vm.info = null;
+    vm.isPlaying = false;
+    $ionicLoading.hide();
+    $interval.cancel(timer);
+    AudioFactory.stop();
   }
 
   function getStreamInfo() {
@@ -132,53 +131,48 @@ angular.module('starter.controllers', [])
 			    // Android only, optional
 			    // text displayed in the status bar when the notification (and the ticker) are updated
 			    ticker    : 'Now playing ' + track
-			}, function(success){
-				//console.log(success);
+    		}, function(success){
+    				//console.log(success);
 
-				function events(action) {
-				    switch(action) {
-				        case 'music-controls-next':
-				            // Do something
-				            break;
-				        case 'music-controls-previous':
-				            // Do something
-				            break;
-				        case 'music-controls-pause':
-				            pause();
-				            MusicControls.updateIsPlaying(false);
-				            break;
-				        case 'music-controls-play':
-				            play();
-				            MusicControls.updateIsPlaying(true);
-				            break;
-				        case 'music-controls-destroy':
-				            // Do something
-				            break;
-				        // Headset events (Android only)
-				        case 'music-controls-media-button' :
-				            // Do something
-				            break;
-				        case 'music-controls-headset-unplugged':
-				            // Do something
-				            break;
-				        case 'music-controls-headset-plugged':
-				            // Do something
-				            break;
-				        default:
-				            break;
-				    }
-				}
+    				function events(action) {
+    				    switch(action) {
+    				        case 'music-controls-next':
+    				            // Do something
+    				            break;
+    				        case 'music-controls-previous':
+    				            // Do something
+    				            break;
+    				        case 'music-controls-pause':
+    				            pause();
+    				            MusicControls.updateIsPlaying(false);
+    				            break;
+    				        case 'music-controls-play':
+    				            play();
+    				            MusicControls.updateIsPlaying(true);
+    				            break;
+    				        case 'music-controls-destroy':
+    				            // Do something
+    				            break;
+    				        // Headset events (Android only)
+    				        case 'music-controls-media-button' :
+    				            // Do something
+    				            break;
+    				        case 'music-controls-headset-unplugged':
+    				            // Do something
+    				            break;
+    				        case 'music-controls-headset-plugged':
+    				            // Do something
+    				            break;
+    				        default:
+    				            break;
+    				    }
+    				}
 
-				// Register callback
-				MusicControls.subscribe(events);
-
-				// Start listening for events
-				// The plugin will run the events function each time an event is fired
-				MusicControls.listen();
-
-			}, function(error){
-				console.log(error);
-			});
+    				MusicControls.subscribe(events);
+    				MusicControls.listen();
+    			}, function(error){
+    				console.log(error);
+    			});
         }
 
       }
@@ -188,20 +182,18 @@ angular.module('starter.controllers', [])
   }
 
 	//listen for the event
-	document.addEventListener("remote-event", function(event) {
-		//if(event.remoteEvent.subtype == "pause")
-		togglePlay();
-	})
+  if(ionic.Platform.isIOS()){
+  	document.addEventListener("remote-event", function(event) {
+  		if(event.remoteEvent.subtype == "pause"){
+        pause();
+      }
+      else if(event.remoteEvent.subtype == "play"){
+        play();
+      }
+  	});
+  }
 
   document.addEventListener("deviceready", function () {
-
-      var type = $cordovaNetwork.getNetwork()
-
-      var isOnline = $cordovaNetwork.isOnline()
-
-      var isOffline = $cordovaNetwork.isOffline()
-
-
       // listen for Online event
       $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
         UtilitiesFactory.showToast("Device is online! Press play to resume listening.");
@@ -215,6 +207,5 @@ angular.module('starter.controllers', [])
         vm.isPlaying = false;
         pause();
       })
-
     }, false);
 });

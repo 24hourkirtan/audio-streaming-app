@@ -48,8 +48,7 @@ angular.module('starter.services', [])
   };
 
   return {
-    playAudio: function(path) {
-
+    init: function(path) {
       var cb = {
         success: function(){
           console.log("playAudio():Audio Success");
@@ -62,38 +61,32 @@ angular.module('starter.services', [])
         }
       };
 
-      var deferred = $q.defer();
-     
-        this.stopAudio();
+      this.stop();
 
-        if(ionic.Platform.isIOS() && window.Stream){
-          media = new window.Stream(path, cb.success, cb.error, cb.status);
-        }
-        else if(Media){
-         media = new Media(path, cb.success, cb.error, cb.status);
-        }
-        media.play();
-        state.playing = true;
-        deferred.resolve();
-      return deferred.promise;
+      if(ionic.Platform.isIOS() && window.Stream)
+        media = new window.Stream(path, cb.success, cb.error, cb.status);
+      else if(Media)
+       media = new Media(path, cb.success, cb.error, cb.status);
     },
-    stopAudio: function() {
-      var deferred = $q.defer();
+    play: function(){
+      if(media)
+        media.play();
+      state.playing = true;
+    },
+    stop: function() {
       if(media){
         media.stop();
-        media.release();
+        /*
+        if(ionic.Platform.isAndroid())
+          media.release();
+        */
         $rootScope.$broadcast('stopped');
       }
-      deferred.resolve();
-      return deferred.promise;
     },
     pause: function() {
       state.playing = false;
-      if(media) media.pause();
-    },
-    resume: function(){
-      state.playing = true;
-      if(media) media.play();
+      if(media) 
+        media.pause();
     }
   };
 });

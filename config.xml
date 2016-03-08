@@ -2,9 +2,9 @@
 <widget id="io.kirtan.audiostreaming" version="0.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>24 Hour Kirtan Radio</name>
   <description>
-     We're an Internet radio station in the process of building an open source mobile audio streaming app that can be used by anyone who wants to create their own Spotify-like app. The idea is to use the advanced Ionic HTML5 hybrid mobile app framework to create both an Android and iOS app based on the same code.
+     We&apos;re an Internet radio station in the process of building an open source mobile audio streaming app that can be used by anyone who wants to create their own Spotify-like app. The idea is to use the advanced Ionic HTML5 hybrid mobile app framework to create both an Android and iOS app based on the same code.
 
-      As an Internet radio station we're already providing an audio stream with 128k and 64k which can be listened to on a desktop computer, smart phone or Internet radio player. In our case the technology used for the Internet radio stream is Icecast (streaming media server) and Liquidsoap (streaming source client) both of which is also free open source software licensed under the GNU General Public License version 2.0 (GPLv2).
+      As an Internet radio station we&apos;re already providing an audio stream with 128k and 64k which can be listened to on a desktop computer, smart phone or Internet radio player. In our case the technology used for the Internet radio stream is Icecast (streaming media server) and Liquidsoap (streaming source client) both of which is also free open source software licensed under the GNU General Public License version 2.0 (GPLv2).
   </description>
   <author email="nkd@24hourkirtan.fm" href="www.24hourkirtan.fm">
     Nanda Kishor
@@ -64,5 +64,5 @@
     <splash src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
     <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
   </platform>
-  <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
+  <icon src="resources/ios/icon/icon-small@3x.png"/>
 </widget>
