@@ -21,8 +21,8 @@ angular.module('starter.controllers', [])
 
     streamUrl = {
       hiFiMode: isHighBandwidth() ? true : false,
-      hiFi: 'http://icecast.24hourkirtan.fm:8000/128k.mp3',
-      loFi: 'http://icecast.24hourkirtan.fm:8000/64k.mp3'
+      hiFi: stream.hiFi,
+      loFi: stream.loFi
     };
 
     // Initialization
