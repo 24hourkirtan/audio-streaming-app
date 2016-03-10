@@ -15,7 +15,7 @@ Set attributes in the widget element.
 ```
 version ="0.8.0"
 
-id="com.ionicframework.kirtanradio392459"
+id="io.kirtan.audiostreaming"
 
 ios-CFBundleVersion="0.8.0"
 ```
@@ -52,8 +52,12 @@ commercial account for 24HourKirtan.
 
 <br/>
 ##### Creating the Archive file  
+Be sure the target is set to Kirtan radio, any device.
+* ![Alt text](img/xcode/target-kirtan.png)
+
+<br/>
 Go to Product > __Archive__. If the menu Product > Archive is disabled you may need to
-switch between 24HourKirtan and Cordova.Lib and back again.  
+switch between Kirtan Radio and Cordova.Lib and back again.  
 
 Follow the prompts to validate and upload to the iTunesConnect website.
 
@@ -68,6 +72,7 @@ old > "$(OBJROOT)/UninstalledProducts/include"
 new > "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include"   
 ```
 
+<br/>
 * ![Alt text](img/xcode/CDVViewController.not-found.png)
 
 ___

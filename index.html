@@ -16,27 +16,82 @@
       <link rel="shortcut icon" href="assets/ico/favicon.png">
       <title>ASR Docs</title>
 
-      <link rel="import" href="ui-imports.html">
-      <link rel="import" href="css.html">
+      <!-- Bootstrap core CSS -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for side menu-->
+      <link href="css/navmenu.css" rel="stylesheet">
+      <link href="css/prism.css" rel="stylesheet">
+      <link href="css/styles.css" rel="stylesheet">
+
+      <!-- Just for debugging purposes. Don't actually copy this line! -->
+      <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+      <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
   </head>
   <body>
-      <!-- Side Menu -->
-      <script>
-          var doc = document.querySelector('link[rel="import"]').import;
-          var text = doc.querySelector('.docMenu');
-          document.body.appendChild(text.cloneNode(true));
-      </script>
+      <!-- ================ SIDE MENU START ====================== -->
 
+
+              <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+                  <!--a class="navmenu-brand visible-md visible-lg" href="index.html" style="border-bottom: thin solid gray;">audio-stream-rest Docs</a-->
+                  <a class="navmenu-brand visible-md visible-lg"
+                    href="https://github.com/24hourkirtan/ionic-audio-streaming"
+                    style="border-bottom: thin solid gray;color:#387ef5;">audio-streaming-app</a>
+                  <ul class="nav navmenu-nav">
+                      <li id="pages-introduction-md"><a href="index.html">Introduction</a></li>
+
+                      <li id="pages-builds-overview-md"><a href="index.html?md=pages_builds_overview.md">Releases</a></li>
+                      <ul class="nav navmenu-nav">
+                          <li id="pages-builds-android-md"><a href="index.html?md=pages_builds_android.md" style="margin-left:25px;">Android</a></li>
+                          <li id="pages-builds-ios-md"><a href="index.html?md=pages_builds_ios.md" style="margin-left:25px;">IOS</a></li>
+                          <li id="pages-builds-playstore-md"><a href="index.html?md=pages_builds_playstore.md" style="margin-left:25px;">Google Play Store</a></li>
+                          <li id="pages-builds-appstore-md"><a href="index.html?md=pages_builds_appstore.md" style="margin-left:25px;">Apple App Store</a></li>
+                          <li id="pages_builds_githubReleases-md"><a href="index.html?md=pages_builds_githubReleases.md" style="margin-left:25px;">GitHub Releases</a></li>
+                      </ul>
+                  </ul>
+
+              </div>
+
+              <div class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg">
+                <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="color:#387ef5;" href="https://github.com/24hourkirtan/ionic-audio-streaming">audio-streaming-app</a>
+              </div>
+
+
+              <script>
+                  var highlightMenu = function(element){
+                      $(element).addClass("active");
+                  }
+              </script>
+
+      <!-- ================ SIDE MENU END ====================== -->
+
+      <!-- =================== THE MARKDOWN DISPLAY =================== -->
       <div class="container">
         <p id="markdownDisplay"></p>
       </div>
 
-      <!-- =================== THE MARKDOWN DISPLAY =================== -->
+      <!-- =================== THE MARKDOWN =================== -->
       <div id="markdown" style="visibility: hidden;"></div>
 
-      <link rel="import" href="javascript.html">
+      <!-- =================== JAVASCRIPT ============================= -->
+      <script src="js/jquery.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/jasny-bootstrap.min.js"></script>
+      <script src="js/marked.js"></script>
+      <script src="js/prism.js"></script>
       <script>
           $(document).ready(function() {
+            console.log('window ready')
               // http://www.sitepoint.com/url-parameters-jquery/
                $.urlParam = function(name){
                 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -52,8 +107,19 @@
               url = url+'?'+Date.now();
               $.get(url, "", function(response) {
                   highlightMenu("#"+md.replace('.','-').replace(/_/g,'-'));
-                  var txt = document.getElementById('markdown').innerHTML.replace(/&gt;/g,'>').replace(/&lt;/g,'<');
+
+                  response = response.replace(/```javascript/g, '<pre style="margin-left:30px"><code class="language-javascript line-numbers">')
+                  .replace(/```typescript/g, '<pre style="margin-left:30px"><code class="language-typescript line-numbers">')
+                  .replace(/```bash/g, '<pre style="margin-left:30px"><code class="language-bash line-numbers">')
+                  .replace(/```css/g, '<pre style="margin-left:30px"><code class="language-css line-numbers">')
+                  .replace(/```html/g, '<pre style="margin-left:30px"><code class="language-html line-numbers">')
+                  .replace(/```json/g, '<pre style="margin-left:30px"><code class="language-json line-numbers">')
+                  .replace(/```xml/g, '<pre style="margin-left:30px"><code class="language-html line-numbers">')
+                  .replace(/```none/g, '<pre style="margin-left:30px"><code class="language-bash line-numbers">')
+                  .replace(/```/g, '</code></pre>');
+
                   document.getElementById('markdownDisplay').innerHTML = marked(response);
+                  Prism.highlightAll(true, function(){console.log("PRISM DONE");})
               });
           });
 
