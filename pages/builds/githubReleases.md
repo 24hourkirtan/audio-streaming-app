@@ -13,7 +13,7 @@ Commit changes for the config.xml and package.json files before the tagged relea
 ```
 $ git add config.xml
 $ git add package.json
-$ git commit =m "tagged release tag v0.8.0"
+$ git commit =m "tagged release v0.8.0"
 ```
 
 Verify file changes in the remote repository.
@@ -21,9 +21,8 @@ Verify file changes in the remote repository.
 
 ___
 ### Create GitHub release
-The final APK and Archive (IPA) files now go to GitHub as a "tagged release".
 Create a new tagged release on GitHub using previous release as a model. Add both the Android
-and IOS files to the release.
+and IOS files to the release. GitHub will add zip files of the source.
 
 * version format:  v0.0.0
 

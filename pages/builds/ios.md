@@ -43,7 +43,9 @@ is not associated with 24HouKirtan contact its admin.
 
 * ![Alt text](img/xcode/verify-general-settings.png)  
 
-
+___
+### Clean the Project
+Select Product > Clean from from the menu bar.
 
 ___
 ### Create an Archive

@@ -86,7 +86,7 @@ Move to the root of the ~/24_keystore directory and move a copy of android-relea
 
 ```bash
 cd ~/Development/24_keystore
-cp ~/Development/ionic-audio-streaming/platforms/android/build/outputs/apk/android-release-unsigned.apk android-release-unsigned.apk
+cp ~/Development/audio-streaming-app/platforms/android/build/outputs/apk/android-release-unsigned.apk android-release-unsigned.apk
 ```
 
 <br/>
