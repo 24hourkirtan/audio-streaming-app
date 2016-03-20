@@ -5,9 +5,9 @@ angular.module('starter.controllers', [])
   document.addEventListener("deviceready", function () {
     // listen for Online event
     $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-      UtilitiesFactory.showToast("Device is online! Press play to resume listening.");
-      //vm.isPlaying = true;
-      //play();
+      //UtilitiesFactory.showToast("Device is online! Press play to resume listening.");
+      vm.isPlaying = true;
+      play();
     })
 
     // listen for Offline event
