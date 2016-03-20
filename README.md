@@ -31,6 +31,7 @@ NOTE: If you are deploying for both Android and iOS on the same machine, clone t
 First, run the following command:
 ```
 ionic state restore
+ionic resources
 ```
 
 <h2>Android</h2>
