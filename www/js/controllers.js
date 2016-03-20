@@ -99,7 +99,8 @@ angular.module('starter.controllers', [])
   }, 5000);
 
   function play() {
-  	//AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
+    if(ionic.Platform.isIOS())
+  	 AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
     AudioFactory.play();
 		vm.isPlaying = true;
 		getStreamInfo();
@@ -113,7 +114,10 @@ angular.module('starter.controllers', [])
     vm.isPlaying = false;
     $ionicLoading.hide();
     $interval.cancel(timer);
-    AudioFactory.pause();
+    if(ionic.Platform.isIOS())
+      AudioFactory.stop();
+    else
+      AudioFactory.pause();
   }
 
   function getStreamInfo() {
