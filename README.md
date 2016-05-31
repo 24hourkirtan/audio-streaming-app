@@ -15,7 +15,7 @@ The app will also allow listeners to stream their custom playlist based on their
 ##Roadmap
 
 * Version 0.8.x (Alpha) released in February, 2016
-* --Version 0.9.0 (Beta) to be released on March 23, 2016--
+* ~~Version 0.9.0 (Beta) to be released on March 23, 2016~~
 * Version 1.0.0 (Beta) to be released in June, 2016
 
 ##Wiki
