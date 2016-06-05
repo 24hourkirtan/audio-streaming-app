@@ -20,10 +20,15 @@
 	left: 0 !important;
 }
 
-.item{
-	background-color: #6F4D1A;
+.item, .item-content{
+	background-color: #6F4D1A !important;
 	color: white !important;
-	text-align: center
+	border: none;
+	border-bottom: 2px solid gray;
+}
+
+.item p, .item h2{
+	color: white;
 }
 
 .bottom {
@@ -35,6 +40,18 @@
 	border: none !important;
 }
 
-.pane { 
+ion-content, .background-art { 
 	background: url(../img/bg.jpg) no-repeat !important;
+}
+
+.menu ion-content{
+	background: none !important;
+}
+
+.menu, .menu .item-content{
+	background-color: black;
+}
+
+.active{
+	color: #DD9933 !important;
 }

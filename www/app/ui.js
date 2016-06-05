@@ -1,5 +1,5 @@
-angular.module('utilitiesModule', [])
-.factory('UtilitiesFactory',
+angular.module('ui', [])
+.factory('ui',
 	function($q, $rootScope, $ionicModal, $ionicLoading, $ionicActionSheet, 
 			$ionicPopup, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopover){
 
@@ -8,6 +8,16 @@ angular.module('utilitiesModule', [])
 	var popover = null;
 
 	return {
+		showAlert: function(title, text){
+			var deferred = $q.defer();
+		   	$ionicPopup.alert({
+		     	title: title,
+		     	template: text
+		   	}).then(function(res) {
+		      deferred.resolve(res);
+		   	});
+		   	return deferred.promise;
+		},
 		showToast: function(text, duration){
 			duration = duration == 0 ? null : duration || 1500;
 			
@@ -23,9 +33,9 @@ angular.module('utilitiesModule', [])
 		showModal: function(template_url, scope){
 			$ionicModal.fromTemplateUrl(template_url, {
 				scope: scope,
-				animation: 'fade-in',
+				animation: 'animated slideInRight',
 				focusFirstInput: false,
-				showBackdrop: false
+				hideDelay: 250
 			}).then(function(modal) {
 				modalStack.push(modal);
 				modal.show();
@@ -37,6 +47,7 @@ angular.module('utilitiesModule', [])
 				popped.hide();
 				popped.remove();
 			}
+			this.hideToast();
 		},
 		showPopover: function(template_url, scope, $event){
 			$ionicPopover.fromTemplateUrl(template_url, {

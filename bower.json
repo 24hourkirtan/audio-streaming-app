@@ -3,5 +3,8 @@
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.2.4"
+  },
+  "dependencies": {
+    "SoundManager2": "soundmanager2#*"
   }
 }

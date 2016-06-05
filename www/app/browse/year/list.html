@@ -1,0 +1,10 @@
+<ion-view view-title="Years">
+  <ion-content>
+    <ion-list>
+      <a class="item item-icon-right" ui-sref="app.songs({key: 'year', value: year})" ng-repeat="year in years" ng-if="year">
+        {{year}}
+        <i class="icon ion-chevron-right"></i>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

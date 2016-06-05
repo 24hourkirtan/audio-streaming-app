@@ -1,0 +1,18 @@
+<div class="modal" ng-controller="SongPlaylistAddCtrl">
+  <ion-header-bar class="bar bar-header bar-custom" align-title="center">
+    <button class="button button-clear" ng-click="hideModal()">Back</button>
+    <h1 class="title">Add To Playlist</h1>
+    <button class="button button-icon button-clear ion-plus" ng-click="showAddPrompt()"></button>
+  </ion-header-bar>
+    <ion-content>
+    <ion-list>
+      <a class="item item-icon-right" ng-repeat="playlist in playlists track by $index" ng-click="addToPlaylist(playlist)">
+        {{playlist.name}}
+      </a>
+      <div class="item center" ng-if="playlists && !playlists.length">
+    	No playlists available.
+	  </div>
+    </ion-list>
+  </ion-content>
+  </ion-content>
+</div>

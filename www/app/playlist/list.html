@@ -1,0 +1,15 @@
+<ion-view view-title="Playlists">
+	<ion-nav-buttons side="right">
+    	<button class="button button-icon button-clear ion-plus" ng-click="showAddPrompt()"></button>
+  	</ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <a class="item item-icon-right" ng-repeat="playlist in playlists track by $index" ui-sref="app.songs({key: 'playlist', value: playlist.name})" on-hold="delete(playlist)">
+        {{playlist.name}}
+      </a>
+      <div class="item center" ng-if="playlists && !playlists.length">
+    	No playlists available.
+	  </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

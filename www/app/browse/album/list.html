@@ -1,0 +1,10 @@
+<ion-view view-title="Albums/Events/Locations">
+  <ion-content>
+    <ion-list>
+	  <a class="item item-icon-right" ui-sref="app.songs({key: 'album', value: album})" ng-repeat="album in albums">
+    	{{album}}
+    	<i class="icon ion-chevron-right"></i>
+	  </a>
+	</ion-list>
+  </ion-content>
+</ion-view>

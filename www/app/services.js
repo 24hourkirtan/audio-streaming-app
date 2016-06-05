@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('app.services', [])
 .factory('streamService', function($http, $q){
 
     var streamUrl = 'http://icecast.24hourkirtan.fm:8000/128k.mp3';
@@ -87,6 +87,39 @@ angular.module('starter.services', [])
       state.playing = false;
       if(media) 
         media.pause();
+    },
+    seekTo: function(milliseconds){
+      if(media)
+        media.seekTo(milliseconds);
     }
   };
+})
+.factory('localStorage',  function ($window) {
+    return {
+        set: function (key, value) {
+            $window.localStorage[key] = value;
+        },
+        get: function (key, defaultValue) {
+            return $window.localStorage[key] || defaultValue;
+        },
+        remove: function (key) {
+            delete $window.localStorage[key];
+        },
+        setObject: function (key, value) {
+            $window.localStorage[key] = JSON.stringify(value);
+        },
+        getObject: function (key) {
+            return JSON.parse($window.localStorage[key] || '{}');
+        },
+        setTiedObject: function (key, value) {
+            var obj = this.getObject(key) || {};
+            var apiKey = this.get('api_key');
+            obj[apiKey] = value;
+            this.setObject(key, obj);
+        },
+        getTiedObject: function (key, value) {
+            var obj = this.getObject(key) || {};
+            return obj[value];
+        }
+    }
 });

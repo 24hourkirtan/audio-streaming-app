@@ -6,7 +6,8 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/common.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -15,26 +16,22 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="lib/SoundManager2/script/soundmanager2-jsmin.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="config.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/services.js"></script>
-    <!--<script src="js/ng-cordova.js"></script>-->
-    <script src="js/utilities.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/menu.js"></script>
+    <script src="app/services.js"></script>
+    <script src="app/browse/browse.js"></script>
+    <script src="app/playlist/playlist.js"></script>
+    <script src="app/radio/radio.js"></script>
+    <script src="app/ui.js"></script>
+    <script src="app/utils.js"></script>
   </head>
-  <body ng-app="starter" ng-controller="StreamController as vm">
-    <ion-pane>
-      <ion-header-bar class="bar-custom">
-        <h1 class="title">24 Hour Kirtan Radio</h1>
-      </ion-header-bar>
-  		<a class="item item-icon-left item-text-wrap bottom" href="#" ng-click="vm.togglePlay()">
-    		<i class="icon play-button {{ vm.isPlaying ? 'ion-ios-pause' : 'ion-ios-play' }}"></i>
-    		{{vm.info.title || 'Start Listening'}}
-  		</a>
-    </ion-pane>
+  <body ng-app="app">
+    <ion-nav-view></ion-nav-view>
   </body>
 </html>

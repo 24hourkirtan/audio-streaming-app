@@ -1,18 +1,26 @@
-angular.module('starter.controllers', [])
-.controller('StreamController', function($interval, $ionicLoading, streamService, $cordovaNetwork, $scope, $rootScope, UtilitiesFactory, AudioFactory) {
+angular.module('app.radio', [])
+.controller('RadioCtrl', function($interval, $ionicLoading, streamService, $cordovaNetwork, $scope, $rootScope, $stateParams, ui, AudioFactory) {
 
   var streamUrl;
+
+  var isHighBandwidth = function(){
+    return $cordovaNetwork.getNetwork() == Connection.CELL_4G ||
+        $cordovaNetwork.getNetwork() == Connection.ETHERNET || 
+        $cordovaNetwork.getNetwork() == Connection.WIFI;
+  };
+
+
   document.addEventListener("deviceready", function () {
     // listen for Online event
     $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-      //UtilitiesFactory.showToast("Device is online! Press play to resume listening.");
+      //ui.showToast("Device is online! Press play to resume listening.");
       vm.isPlaying = true;
       play();
     })
 
     // listen for Offline event
     $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-      UtilitiesFactory.showToast("Device is offline!");
+      ui.showToast("Device is offline!");
       vm.isPlaying = false;
       pause();
       if(MusicControls)
@@ -27,14 +35,7 @@ angular.module('starter.controllers', [])
 
     // Initialization
     AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
-
   }, false);
-
-  var isHighBandwidth = function(){
-    return $cordovaNetwork.getNetwork() == Connection.CELL_4G ||
-        $cordovaNetwork.getNetwork() == Connection.ETHERNET || 
-        $cordovaNetwork.getNetwork() == Connection.WIFI;
-  };
 
   var vm = angular.extend(this, {
     togglePlay: function(){
@@ -75,7 +76,7 @@ angular.module('starter.controllers', [])
   var connectionTimer = $interval(function() {
       if(isHighBandwidth()){
         if(streamUrl.hiFiMode == false){
-          UtilitiesFactory.showToast("Switching to high-bandwidth mode...");
+          ui.showToast("Switching to high-bandwidth mode...");
           streamUrl.hiFiMode = true;
           if(vm.isPlaying){
             //pause();
@@ -86,7 +87,7 @@ angular.module('starter.controllers', [])
         }
       } else {
         if(streamUrl.hiFiMode == true){
-          UtilitiesFactory.showToast("Switching to low-bandwidth mode...");
+          ui.showToast("Switching to low-bandwidth mode...");
           streamUrl.hiFiMode = false;
           if(vm.isPlaying){
             //pause();
@@ -100,14 +101,15 @@ angular.module('starter.controllers', [])
 
   function play() {
     if(ionic.Platform.isIOS())
-  	 AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
-    AudioFactory.play();
-		vm.isPlaying = true;
-		getStreamInfo();
-    timer = $interval(function() {
+      AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
+    
+      AudioFactory.play();
+		  vm.isPlaying = true;
+		  getStreamInfo();
+      timer = $interval(function() {
         getStreamInfo();
-    }, 5000);
-  }
+      }, 5000);
+    }
 
   function pause() {
     vm.info = null;

@@ -1,0 +1,10 @@
+<ion-view view-title="Kirtaniyas">
+  <ion-content>
+    <ion-list>
+      <a class="item item-icon-right" ui-sref="app.songs({key: 'artist', value: artist})" ng-repeat="artist in artists">
+        {{artist}}
+        <i class="icon ion-chevron-right"></i>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>
