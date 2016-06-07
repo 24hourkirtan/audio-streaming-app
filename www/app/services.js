@@ -7,17 +7,16 @@ angular.module('app.services', [])
     var itunesSearchUrl = 'https://itunes.apple.com/search?term=';
     var resolutionRegex = /100x100/;
 
-    var service = {
-      getStreamInfo: getStreamInfo
+    return {
+      getStreamInfo: function() {
+        return $http.get(metadataUrl).then(function(response) {
+          console.log(response);
+          return response.data.icestats.source[0];
+        });
+      }
     };
-    return service;
     // ***************************************************************************
-    function getStreamInfo() {
-      return $http.get(metadataUrl).then(function(response) {
-        console.log(response);
-        return response.data.icestats.source[0];
-      });
-    }
+    
 
     function getCover(title) {
       return $http.get(itunesSearchUrl + title).then(function(response) {

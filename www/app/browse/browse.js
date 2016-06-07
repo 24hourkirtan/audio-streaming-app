@@ -35,7 +35,8 @@ angular.module('app.browse', [])
 		changed: false,
 		currentId: null,
 		view: $stateParams.key,
-		continue: true
+		continue: true,
+		jingled: false
 	};
 
 	$scope.togglePlay = function(){
@@ -64,34 +65,14 @@ angular.module('app.browse', [])
 		$scope.song = song;
 		AudioFactory.init(encodeURI(song.dpath));
 		AudioFactory.play();
-		/*
-		if(mySound)
-			mySound
-		soundManager.setup({
-		  url: './lib/soundManager2/swf/',
-		  onready: function() {
-			mySound = soundManager.createSound({
-		      id: 'aSound',
-		      url:" API_URL + '/mp3/file/' + song._id + '.mp3'"
-		    });
-		    mySound.play();
-		  }
-		});
-		*/
-
-		/*
-		var myaudio = new Audio(song.selfLink);
-	    myaudio.id = 'playerMyAdio';
-	    myaudio.play();
-		*/
 
 		$scope.state.isPlaying = true;
+		$scope.state.jingled = false;
 	};
 
 	$scope.$on('status', function(event, status){
     	$scope.$apply(function(){
 	    	if(status == Media.MEDIA_STARTING){
-	    		console.log("Starting")
 	    		//$scope.state.status = "Loading audio...";
 	    		$ionicLoading.show({
 			      template: 'Loading...'
@@ -100,29 +81,46 @@ angular.module('app.browse', [])
 	    	}
 	    	else if(status == Media.MEDIA_RUNNING){
 	    		$scope.state.continue = true;
-	    		console.log("Running")
 	    		//$scope.state.status = "Playing...";
 	    		$ionicLoading.hide();
           		loading = false;
 	    	}
 	    	else if(status == Media.MEDIA_STOPPED){
 		    	//$scope.state.status = "Stopped.";
-		    	console.log("Stopped")
           		loading = false;
           		if($scope.state.continue){
-          			if(!$scope.state.shuffle){
-          				if(++$scope.state.currentId >= $scope.songs.length)
-          					$scope.state.currentId = 0;
-          				AudioFactory.init($scope.songs[$scope.state.currentId].dpath);
-          				$scope.song = $scope.songs[$scope.state.currentId];
+          			if(!$scope.state.jingled){
+          	    		$ionicLoading.show({
+					      template: 'Loading...'
+					    });
+					    loading = true;
+
+          				$http.get(API_URL + "/jingle/random").then(function(response){
+          					var jingle = response.data;
+          					$scope.song = jingle;
+          					AudioFactory.init(encodeURI(jingle.dpath));
+          					AudioFactory.play();
+							$ionicLoading.hide();
+          					loading = false;
+          					$scope.state.jingled = true;
+						});
+          			}
+          			else{
+          				$scope.state.jingled = false;
+	          			if(!$scope.state.shuffle){
+	          				if(++$scope.state.currentId >= $scope.songs.length)
+	          					$scope.state.currentId = 0;
+	          				AudioFactory.init($scope.songs[$scope.state.currentId].dpath);
+	          				$scope.song = $scope.songs[$scope.state.currentId];
+						}
+						else{
+							var index = Math.floor(Math.random() * $scope.songs.length);
+							$scope.state.currentId = index;
+							AudioFactory.init($scope.songs[index].dpath);
+							$scope.song = $scope.songs[index];
+						}
+						AudioFactory.play();
 					}
-					else{
-						var index = Math.floor(Math.random() * $scope.songs.length);
-						$scope.state.currentId = index;
-						AudioFactory.init($scope.songs[index].dpath);
-						$scope.song = $scope.songs[index];
-					}
-					AudioFactory.play();
           		}
 	    	}
     	});
@@ -145,11 +143,10 @@ angular.module('app.browse', [])
 				    })
 				.then(
 				    function successCallback(res) {
-				        console.log("Res", res.data);
 				        $scope.songs = res.data;
 				    },
 				    function errorCallback(res) {
-				        console.log(res);
+				        //console.log(res);
 				    }
 				);
 				$scope.title = $stateParams.value;

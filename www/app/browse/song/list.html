@@ -1,11 +1,11 @@
 <ion-view view-title="{{title}}">
   <ion-content>
     <ion-list>
-	  <a class="item item-icon-right" ng-repeat="song in songs track by $index">
+	  <a class="item item-icon-right" ng-repeat="song in songs track by $index" ng-click="play(song, $index)">
     	<h2>{{song.title}}</h2>
         <p>{{song.artist}}</p>
         <i class="icon ion-plus" ng-click="showAddToPlaylistModal($event, song)" ng-if="state.view != 'playlist'"></i>
-        <i class="icon ion-play" ng-click="play(song, $index)" ng-if="state.view == 'playlist'"></i>
+        <i class="icon ion-play" ng-if="state.view == 'playlist'"></i>
 	  </a>
 	  <div class="item center" ng-if="songs && !songs.length">
     	No songs available.
