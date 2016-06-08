@@ -39,7 +39,6 @@ ionic resources
 Then, run
 ```
 cordova platform add android
-cordova plugin add cordova-plugin-media@0.2.14
 cordova plugin add https://github.com/homerours/cordova-music-controls-plugin
 ```
 
@@ -47,12 +46,14 @@ cordova plugin add https://github.com/homerours/cordova-music-controls-plugin
 
 Then, run
 ```
-cordova platform add ios@3.9.2
-cordova plugin add https://github.com/keosuofficial/cordova-audio-stream-plugin.git
+cordova platform add ios
 cordova plugin add https://github.com/shi11/RemoteControls
 ```
 
 Then follow the instructions in the "Installation" section located here: https://github.com/shi11/RemoteControls
+
+ADDITIONAL NOTE: If the API server has a self-signed SSL certificate, please follow the instructions [here](http://ivancevich.me/articles/ignoring-invalid-ssl-certificates-on-cordova-android-ios/) in order to allow the app to access the API server.
+
 
 #Testing
 

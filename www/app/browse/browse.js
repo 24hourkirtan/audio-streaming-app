@@ -27,7 +27,7 @@ angular.module('app.browse', [])
 		ui.hideToast();
 	});
 })
-.controller('SongListCtrl', function($scope, $rootScope, $stateParams, $http, ui, $timeout, localStorage, AudioFactory, $ionicLoading, $ionicPlatform) {
+.controller('SongListCtrl', function($scope, $rootScope, $stateParams, $http, ui, $timeout, localStorage, AudioFactory, $ionicPlatform) {
 
 	$scope.state = {
 		shuffle: false,
@@ -74,15 +74,13 @@ angular.module('app.browse', [])
     	$scope.$apply(function(){
 	    	if(status == Media.MEDIA_STARTING){
 	    		//$scope.state.status = "Loading audio...";
-	    		$ionicLoading.show({
-			      template: 'Loading...'
-			    });
+	    		ui.showToast("Loading...", 0);
           		loading = true;
 	    	}
 	    	else if(status == Media.MEDIA_RUNNING){
 	    		$scope.state.continue = true;
 	    		//$scope.state.status = "Playing...";
-	    		$ionicLoading.hide();
+	    		ui.hideToast();
           		loading = false;
 	    	}
 	    	else if(status == Media.MEDIA_STOPPED){
@@ -90,9 +88,7 @@ angular.module('app.browse', [])
           		loading = false;
           		if($scope.state.continue){
           			if(!$scope.state.jingled){
-          	    		$ionicLoading.show({
-					      template: 'Loading...'
-					    });
+          	    		ui.showToast("Loading...", 0);
 					    loading = true;
 
           				$http.get(API_URL + "/jingle/random").then(function(response){
@@ -100,7 +96,7 @@ angular.module('app.browse', [])
           					$scope.song = jingle;
           					AudioFactory.init(encodeURI(jingle.dpath));
           					AudioFactory.play();
-							$ionicLoading.hide();
+							ui.hideToast();
           					loading = false;
           					$scope.state.jingled = true;
 						});

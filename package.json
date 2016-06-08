@@ -22,7 +22,8 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-network-information",
-    "cordova-plugin-file"
+    "cordova-plugin-file",
+    "cordova-plugin-media"
   ],
   "cordovaPlatforms": []
 }

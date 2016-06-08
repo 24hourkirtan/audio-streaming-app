@@ -55,3 +55,7 @@ ion-content, .background-art {
 .active{
 	color: #DD9933 !important;
 }
+
+.button-icon{
+	color: white !important;
+}
