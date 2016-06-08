@@ -60,6 +60,7 @@ angular.module('app.browse', [])
 	var mySound;
 
 	$scope.play = function(song, $index){
+		ui.showToast("Loading...", 0);
 		$scope.state.currentId = $index;
 		$scope.state.continue = false;
 		$scope.song = song;

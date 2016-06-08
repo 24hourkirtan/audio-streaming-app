@@ -61,11 +61,7 @@ angular.module('app.services', [])
       };
 
       this.stop();
-
-      if(ionic.Platform.isIOS() && window.Stream)
-        media = new window.Stream(path, cb.success, cb.error, cb.status);
-      else if(Media)
-       media = new Media(path, cb.success, cb.error, cb.status);
+      media = new Media(path, cb.success, cb.error, cb.status);
     },
     play: function(){
       if(media)
@@ -75,10 +71,6 @@ angular.module('app.services', [])
     stop: function() {
       if(media){
         media.stop();
-        /*
-        if(ionic.Platform.isAndroid())
-          media.release();
-        */
         $rootScope.$broadcast('stopped');
       }
     },
