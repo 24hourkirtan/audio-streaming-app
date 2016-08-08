@@ -2,8 +2,14 @@
   <h1  id="page-title">Releases > IOS</h1>
 </div>
 
-Detailed instructions on how to prepare a build releases for IOS. CLI commands are MAC or Linux based. Windows users must adjust syntax.
+Detailed instructions on how to prepare a build releases for IOS.
+CLI commands are MAC or Linux based. Windows users must adjust syntax.
 
+
+___
+### Preparation
+Use the instructions from the project's README.md to download and setup a local repo. name the
+new local repo using the version number. (audio-streaming-app-ios-083)
 
 ___
 ### Update the config.xml file
@@ -11,7 +17,7 @@ A few attributes need to be verified prior to creating a release build by adjust
 Be sure that the (id)
 in the widget element is correctly set and has not been changed as Xcode will use it as the Bundle Identifier.
 
-Set attributes in the widget element.
+Set attributes in the widget element. Note and use the proper version number.
 ```
 version ="0.8.0"
 
@@ -41,6 +47,10 @@ Open the 24 Hour platforms > ios > __Kirtan Radio.xcodeproj__ file to launch Xco
 Verify general settings shown below. Note the Team setting as 24HourKirtan. If your Apple ID
 is not associated with 24HouKirtan contact its admin.
 
+```
+Use 8.0 as the deployment target for IOS.
+```
+
 * ![Alt text](img/xcode/verify-general-settings.png)  
 
 ___
@@ -49,7 +59,7 @@ Select Product > Clean from from the menu bar.
 
 ___
 ### Create an Archive
-Build an Archive and upload to iTunesConnect. Your Apple ID must exists at the target
+Build an Archive and upload to iTunesConnect. Your Apple ID must exist at the target
 commercial account for 24HourKirtan.
 
 <br/>
@@ -79,13 +89,13 @@ new > "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include"
 
 ___
 ### Create GitHub Release
-See the document: Releases > [GitHub Release](index.html?md=pages_builds_github-release.md).
+See the document: Releases > [GitHub Release](index.html?md=pages_builds_githubReleases.md).
 
 
 
 ___
 ### App Store (iTunesConnect)
-Logon to itunesconnect.com to manage the Archive for beta testing or production deployment.
+Logon to https://itunesconnect.apple.com to manage the Archive for beta testing or production deployment.
 More information about iTunesConnect in the __[Apple App Store](index.html?md=pages_builds_appstore.md)__ section.
 
 ___

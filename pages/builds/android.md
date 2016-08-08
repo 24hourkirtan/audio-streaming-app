@@ -4,15 +4,22 @@
 
 Detailed instructions on how to prepare a build releases for Android. CLI commands are MAC or Linux based. Windows users must adjust syntax.
 
+
+___
+### Preparation
+Use the instructions from the project's README.md to download and setup a local repo. name the
+new local repo using the version number. (audio-streaming-app-android-083)
 ___
 ### Update the config.xml file
 A few attributes need to be verified prior to creating a release build by adjusting the version number and version-code. If the version-code is not set the SDK build will create one based on the version number. Be sure that the (id) in the widget element is correctly set and has not been changed.
 
-Set attributes in the widget element.
+Set attributes in the widget element. Note and use the proper version number. The android-versionCode must be added and manual updated.
+The number must be higher than the previous number on the playstore. Older versions of cordova added an (8) when creating the versionCode
+when not present. Newer versions of cordova do not so now set it manually to get the number desired.
 ```json
 version ="0.8.0"
-
-id="com.ionicframework.kirtanradio392459"
+android-versionCode="8040"
+id="io.kirtan.audiostreaming"
 ```
 
 
@@ -108,10 +115,10 @@ ___
 
 ___
 ### Create GitHub Release
-See the document: Releases > [GitHub Release](index.html?md=pages_builds_github-release.md).
+See the document: Releases > [GitHub Release](index.html?md=pages_builds_githubReleases.md).
 
 ___
 ### Play Store
-See the document: Releases > [Play Store](index.html?md=pages_builds_playstore.md).
+See the document: Releases > [Play Store](index.html?md=pages_builds_playstore.md) or access https://play.google.com.
 
 ---------

@@ -1,7 +1,17 @@
 
 
 
+hr {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
 
+h4 {
+    color:#397628;
+}
 
 
 
