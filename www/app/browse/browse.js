@@ -2,28 +2,28 @@ angular.module('app.browse', [])
 .controller('NewReleaseListCtrl', function($scope, $stateParams, $http, ui) {
 	ui.showToast("Loading...");
 	$http.get(API_URL + "/mp3s/distinctkey/releases").then(function(response){
-		$scope.releases = response.data;
+		$scope.releases = response.data.sort();
 		ui.hideToast();
 	});
 })
 .controller('AlbumListCtrl', function($scope, $stateParams, $http, ui) {
 	ui.showToast("Loading...");
 	$http.get(API_URL + "/mp3s/distinctkey/album").then(function(response){
-		$scope.albums = response.data;
+		$scope.albums = response.data.sort();
 		ui.hideToast();
 	});
 })
 .controller('ArtistListCtrl', function($scope, $stateParams, $http, ui) {
 	ui.showToast("Loading...");
 	$http.get(API_URL + "/mp3s/distinctkey/artist").then(function(response){
-		$scope.artists = response.data;
+		$scope.artists = response.data.sort();
 		ui.hideToast();
 	});
 })
 .controller('YearListCtrl', function($scope, $stateParams, $http, ui) {
 	ui.showToast("Loading...");
 	$http.get(API_URL + "/mp3s/distinctkey/year").then(function(response){
-		$scope.years = response.data;
+		$scope.years = response.data.sort().reverse();
 		ui.hideToast();
 	});
 })
@@ -53,7 +53,7 @@ angular.module('app.browse', [])
 		else{
 			$scope.state.continue = true;
 			$scope.state.isPlaying = true;
-      		AudioFactory.play();
+      		AudioFactory.play(false);
 		}
 	};
 
@@ -65,7 +65,7 @@ angular.module('app.browse', [])
 		$scope.state.continue = false;
 		$scope.song = song;
 		AudioFactory.init(encodeURI(song.dpath));
-		AudioFactory.play();
+		AudioFactory.play(false);
 
 		$scope.state.isPlaying = true;
 		$scope.state.jingled = false;
@@ -96,7 +96,7 @@ angular.module('app.browse', [])
           					var jingle = response.data;
           					$scope.song = jingle;
           					AudioFactory.init(encodeURI(jingle.dpath));
-          					AudioFactory.play();
+          					AudioFactory.play(false);
 							ui.hideToast();
           					loading = false;
           					$scope.state.jingled = true;
@@ -116,7 +116,7 @@ angular.module('app.browse', [])
 							AudioFactory.init($scope.songs[index].dpath);
 							$scope.song = $scope.songs[index];
 						}
-						AudioFactory.play();
+						AudioFactory.play(false);
 					}
           		}
 	    	}

@@ -16,6 +16,7 @@ angular.module('app', [
 ])
 .run(function($ionicPlatform, $ionicPopup) {
   $ionicPlatform.ready(function() {
+    
     $ionicPlatform.registerBackButtonAction(function () {
         var confirmPopup = $ionicPopup.confirm({
          template: 'Are you sure you want to exit?',

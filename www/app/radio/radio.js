@@ -10,6 +10,7 @@ angular.module('app.radio', [])
   };
 
   document.addEventListener("deviceready", function () {
+
     // listen for Online event
     $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
       //ui.showToast("Device is online! Press play to resume listening.");
@@ -103,12 +104,14 @@ angular.module('app.radio', [])
     });
 
   function play() {
-    if(ionic.Platform.isIOS() && !vm.paused){
+    if((ionic.Platform.isIOS() && !vm.paused) || !AudioFactory.isRadio){
       //ui.showToast("Loading...", 0);
       AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
+      if(!AudioFactory.isRadio)
+    	AudioFactory.stop();
     }
     
-    AudioFactory.play();
+    AudioFactory.play(true);
     vm.paused = false;
 	  vm.isPlaying = true;
 	  getStreamInfo();
@@ -153,73 +156,76 @@ angular.module('app.radio', [])
         
         var params = [artist, track, album, image, duration, elapsedTime];
 
-        if(ionic.Platform.isIOS()){
-	        window.remoteControls.updateMetas(function(success){
-	            console.log(success);
-	        }, function(fail){
-	            console.log(fail);
-	        }, params);
-        }
-        else{
-        	MusicControls.create({
-			    track       : track,        // optional, default : ''
-			    artist      : artist,                       // optional, default : ''
-			    cover       : image,      // optional, default : nothing
-			    isPlaying   : true,                         // optional, default : true
-			    dismissable : true,                         // optional, default : false
+        if($scope.title != vm.info.title){
+	        if(ionic.Platform.isIOS()){
+		        window.remoteControls.updateMetas(function(success){
+		            console.log(success);
+		        }, function(fail){
+		            console.log(fail);
+		        }, params);
+	        }
+	        else{
+	        	MusicControls.create({
+				    track       : track,        // optional, default : ''
+				    artist      : artist,                       // optional, default : ''
+				    cover       : image,      // optional, default : nothing
+				    isPlaying   : true,                         // optional, default : true
+				    dismissable : true,                         // optional, default : false
 
-			    // hide previous/next/close buttons:
-			    hasPrev   : false,      // show previous button, optional, default: true
-			    hasNext   : false,      // show next button, optional, default: true
-			    hasClose  : true,       // show close button, optional, default: false
+				    // hide previous/next/close buttons:
+				    hasPrev   : false,      // show previous button, optional, default: true
+				    hasNext   : false,      // show next button, optional, default: true
+				    hasClose  : true,       // show close button, optional, default: false
 
-			    // Android only, optional
-			    // text displayed in the status bar when the notification (and the ticker) are updated
-			    ticker    : 'Now playing ' + track
-    		}, function(success){
-    				//console.log(success);
+				    // Android only, optional
+				    // text displayed in the status bar when the notification (and the ticker) are updated
+				    ticker    : 'Now playing ' + track
+	    		}, function(success){
+	    				//console.log(success);
 
-    				function events(action) {
-    				    switch(action) {
-    				        case 'music-controls-next':
-    				            // Do something
-    				            break;
-    				        case 'music-controls-previous':
-    				            // Do something
-    				            break;
-    				        case 'music-controls-pause':
-    				            pause();
-    				            MusicControls.updateIsPlaying(false);
-    				            break;
-    				        case 'music-controls-play':
-    				            play();
-    				            MusicControls.updateIsPlaying(true);
-    				            break;
-    				        case 'music-controls-destroy':
-    				            // Do something
-    				            break;
-    				        // Headset events (Android only)
-    				        case 'music-controls-media-button' :
-    				            // Do something
-    				            break;
-    				        case 'music-controls-headset-unplugged':
-    				            // Do something
-    				            break;
-    				        case 'music-controls-headset-plugged':
-    				            // Do something
-    				            break;
-    				        default:
-    				            break;
-    				    }
-    				}
+	    				function events(action) {
+	    				    switch(action) {
+	    				        case 'music-controls-next':
+	    				            // Do something
+	    				            break;
+	    				        case 'music-controls-previous':
+	    				            // Do something
+	    				            break;
+	    				        case 'music-controls-pause':
+	    				            pause();
+	    				            MusicControls.updateIsPlaying(false);
+	    				            break;
+	    				        case 'music-controls-play':
+	    				            play();
+	    				            MusicControls.updateIsPlaying(true);
+	    				            break;
+	    				        case 'music-controls-destroy':
+	    				            // Do something
+	    				            break;
+	    				        // Headset events (Android only)
+	    				        case 'music-controls-media-button' :
+	    				            // Do something
+	    				            break;
+	    				        case 'music-controls-headset-unplugged':
+	    				            // Do something
+	    				            break;
+	    				        case 'music-controls-headset-plugged':
+	    				            // Do something
+	    				            break;
+	    				        default:
+	    				            break;
+	    				    }
+	    				}
 
-    				MusicControls.subscribe(events);
-    				MusicControls.listen();
-    			}, function(error){
-    				console.log(error);
-    			});
-        }
+	    				MusicControls.subscribe(events);
+	    				MusicControls.listen();
+	    			}, function(error){
+	    				console.log(error);
+	    			});
+	        }
+	    }
 
+	    $scope.title = vm.info.title;
       }
     }, function() {
       vm.info = null;

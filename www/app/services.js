@@ -43,7 +43,8 @@ angular.module('app.services', [])
   var media;
   var state = {
     playing: false,
-    volume: 100
+    volume: 100,
+    isRadio: false
   };
 
   return {
@@ -63,10 +64,11 @@ angular.module('app.services', [])
       this.stop();
       media = new Media(path, cb.success, cb.error, cb.status);
     },
-    play: function(){
+    play: function(isRadio){
       if(media)
         media.play();
       state.playing = true;
+      state.isRadio = isRadio;
     },
     stop: function() {
       if(media){
