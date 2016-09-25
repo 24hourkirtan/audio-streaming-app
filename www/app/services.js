@@ -66,7 +66,7 @@ angular.module('app.services', [])
     },
     play: function(isRadio){
       if(media)
-        media.play();
+        media.play({ playAudioWhenScreenIsLocked : true });
       state.playing = true;
       state.isRadio = isRadio;
     },

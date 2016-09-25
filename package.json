@@ -23,8 +23,22 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-network-information",
     "cordova-plugin-file",
-    "cordova-plugin-media"
+    "cordova-plugin-compat",
+    "cordova-plugin-media",
+    {
+      "locator": "https://github.com/shi11/RemoteControls",
+      "id": "com.rd11.remote-controls"
+    },
+    {
+      "locator": "https://github.com/AubreyHewes/cordova-background-audio.git",
+      "id": "nl.kingsquare.cordova.background-audio"
+    }
   ],
   "cordovaPlatforms": [
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
   ]
 }
