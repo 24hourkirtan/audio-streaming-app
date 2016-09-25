@@ -31,7 +31,6 @@ angular.module('app.browse', [])
 
 	$scope.state = {
 		shuffle: false,
-		isPlaying: false,
 		changed: false,
 		currentId: null,
 		view: $stateParams.key,
@@ -42,17 +41,17 @@ angular.module('app.browse', [])
 	$scope.togglePlay = function(){
 		if(!$scope.state.currentId){
 			$scope.state.currentId = 0;
-			$scope.song = $scope.songs[0];
-			AudioFactory.init(encodeURI($scope.song.dpath));
+			$rootScope.song = $rootScope.songs[0];
+			AudioFactory.init(encodeURI($rootScope.song.dpath));
 		}
-		if($scope.state.isPlaying){
+		if($rootScope.isPlaying){
 			$scope.state.continue = false;
-			$scope.state.isPlaying = false;
+			$rootScope.isPlaying = false;
 			AudioFactory.pause();
 		}
 		else{
 			$scope.state.continue = true;
-			$scope.state.isPlaying = true;
+			$rootScope.isPlaying = true;
       		AudioFactory.play(false);
 		}
 	};
@@ -63,11 +62,11 @@ angular.module('app.browse', [])
 		ui.showToast("Loading...", 0);
 		$scope.state.currentId = $index;
 		$scope.state.continue = false;
-		$scope.song = song;
+		$rootScope.song = song;
 		AudioFactory.init(encodeURI(song.dpath));
 		AudioFactory.play(false);
 
-		$scope.state.isPlaying = true;
+		$rootScope.isPlaying = true;
 		$scope.state.jingled = false;
 	};
 
@@ -94,7 +93,7 @@ angular.module('app.browse', [])
 
           				$http.get(API_URL + "/jingle/random").then(function(response){
           					var jingle = response.data;
-          					$scope.song = jingle;
+          					$rootScope.song = jingle;
           					AudioFactory.init(encodeURI(jingle.dpath));
           					AudioFactory.play(false);
 							ui.hideToast();
@@ -105,16 +104,16 @@ angular.module('app.browse', [])
           			else{
           				$scope.state.jingled = false;
 	          			if(!$scope.state.shuffle){
-	          				if(++$scope.state.currentId >= $scope.songs.length)
+	          				if(++$scope.state.currentId >= $rootScope.songs.length)
 	          					$scope.state.currentId = 0;
-	          				AudioFactory.init($scope.songs[$scope.state.currentId].dpath);
-	          				$scope.song = $scope.songs[$scope.state.currentId];
+	          				AudioFactory.init($rootScope.songs[$scope.state.currentId].dpath);
+	          				$rootScope.song = $rootScope.songs[$scope.state.currentId];
 						}
 						else{
-							var index = Math.floor(Math.random() * $scope.songs.length);
+							var index = Math.floor(Math.random() * $rootScope.songs.length);
 							$scope.state.currentId = index;
-							AudioFactory.init($scope.songs[index].dpath);
-							$scope.song = $scope.songs[index];
+							AudioFactory.init($rootScope.songs[index].dpath);
+							$rootScope.song = $rootScope.songs[index];
 						}
 						AudioFactory.play(false);
 					}
@@ -140,7 +139,7 @@ angular.module('app.browse', [])
 				    })
 				.then(
 				    function successCallback(res) {
-				        $scope.songs = res.data;
+				        $rootScope.songs = res.data;
 				    },
 				    function errorCallback(res) {
 				        //console.log(res);
@@ -155,9 +154,10 @@ angular.module('app.browse', [])
 			// Non-playlist queries
 			if(first && !next){
 				$http.get(API_URL + "/mp3s/key/" + $stateParams.key + "?q="+$stateParams.value).then(function(response){
-					$scope.songs = response.data.mp3s;
+					$rootScope.songs = response.data.mp3s;
 					next = response.data._next;
 					first = false;
+					
 					$scope.$broadcast('scroll.infiniteScrollComplete');
 
 					$scope.more = response.data._remainingCnt;
@@ -166,7 +166,7 @@ angular.module('app.browse', [])
 			else{
 				$http.get(API_URL + next).then(function(response){
 
-					$scope.songs = $scope.songs.concat(response.data.mp3s);
+					$rootScope.songs = $rootScope.songs.concat(response.data.mp3s);
 					next = response.data._next;
 					$scope.$broadcast('scroll.infiniteScrollComplete');
 
@@ -186,20 +186,20 @@ angular.module('app.browse', [])
 	      $event.preventDefault(); 
 	    }
 
-		$scope.song = song;
+		$rootScope.song = song;
 	    ui.showModal("./app/browse/song/add-modal.html", $scope); 
 	    ui.hidePopover();
 	};
 
 	/*
 	$scope.showAddModal = function(){
-		console.log($scope.song);
+		console.log($rootScope.song);
 	    ui.showModal("./app/browse/song/add-modal.html", $scope); 
 	    ui.hidePopover();
 	};
 
 	$scope.showOptionsPopover = function($event, song){
-		$scope.song = song;
+		$rootScope.song = song;
 		console.log($event);
 		if($event){
 	      $event.stopPropagation();
@@ -214,12 +214,12 @@ angular.module('app.browse', [])
 	$scope.addToPlaylist = function(playlist){
 		for(var i = 0; i < $scope.playlists.length; i++){
 			if($scope.playlists[i].name == playlist.name){
-				if($scope.playlists[i]["mp3s"].indexOf($scope.song._id) > -1){
+				if($scope.playlists[i]["mp3s"].indexOf($rootScope.song._id) > -1){
 					ui.showToast("This playlist already contains this song!", 2000);
 					break;
 				}
 				else{
-					$scope.playlists[i]["mp3s"].push($scope.song._id);
+					$scope.playlists[i]["mp3s"].push($rootScope.song._id);
 					localStorage.setArray("playlists", $scope.playlists);
 					ui.hideModal();
 					ui.showToast("Song added to playlist!", 2000);

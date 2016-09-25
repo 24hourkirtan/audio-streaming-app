@@ -59,3 +59,7 @@ ion-content, .background-art {
 .icon, .button-icon{
 	color: white !important;
 }
+
+.spinner{
+	stroke: white !important;
+}
