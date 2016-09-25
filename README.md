@@ -48,9 +48,8 @@ Then, run
 ```
 cordova platform add ios
 cordova plugin add https://github.com/shi11/RemoteControls
+cordova plugin add nl.kingsquare.cordova.background-audio
 ```
-
-Then follow the instructions in the "Installation" section located here: https://github.com/shi11/RemoteControls
 
 ADDITIONAL NOTE: If the API server has a self-signed SSL certificate, please follow the instructions [here](http://ivancevich.me/articles/ignoring-invalid-ssl-certificates-on-cordova-android-ios/) in order to allow the app to access the API server.
 

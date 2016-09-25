@@ -239,7 +239,7 @@ angular.module('app.radio', [])
       }
     }
     else if(toState.name == "app.radio"){
-      connectionTimer = $interval(bandwidthCheckTimer, 5000);
+      connectionTimer = $interval(checkBandwidth, 5000);
     }
   });
 });
