@@ -70,4 +70,5 @@
   </platform>
   <icon src="resources/ios/icon/icon-small@3x.png"/>
   <engine name="android" spec="~5.2.2"/>
+  <plugin name="nl.kingsquare.cordova.background-audio" source="npm" />
 </widget>
