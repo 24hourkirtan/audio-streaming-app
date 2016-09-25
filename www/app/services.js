@@ -44,8 +44,11 @@ angular.module('app.services', [])
   var state = {
     playing: false,
     volume: 100,
-    isRadio: false
+    isRadio: false,
+    url: null
   };
+
+  var test = false;
 
   return {
     init: function(path) {
@@ -62,7 +65,12 @@ angular.module('app.services', [])
       };
 
       this.stop();
-      media = new Media(path, cb.success, cb.error, cb.status);
+      if(path){
+        state.url = path;
+        media = new Media(path, cb.success, cb.error, cb.status);
+      }
+      else
+        media = new Media(state.url, cb.success, cb.error, cb.status);
     },
     play: function(isRadio){
       if(media)

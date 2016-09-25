@@ -1,5 +1,5 @@
 angular.module('app.menu', [])
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, AudioFactory, ui) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -38,4 +38,30 @@ angular.module('app.menu', [])
       $scope.closeLogin();
     }, 1000);
   };
+
+  // Audio Control
+  document.addEventListener("deviceready", function () {
+
+    // listen for Online event
+    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+      //ui.showToast("Device is online! Press play to resume listening.");
+      $rootScope.isOnline = true;
+      /*
+      if($rootScope.isPlaying)
+        AudioFactory.play();
+      */
+    })
+
+    // listen for Offline event
+    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+      ui.showToast("Device is offline!");
+      $rootScope.isOnline = false;
+      /*
+      AudioFactory.pause();
+
+      if(MusicControls)
+        MusicControls.updateIsPlaying(false);
+      */
+    })
+  }, false);
 });

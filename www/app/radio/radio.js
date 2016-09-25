@@ -1,7 +1,6 @@
 angular.module('app.radio', [])
 .controller('RadioCtrl', function($interval, $ionicLoading, streamService, $cordovaNetwork, $scope, $rootScope, $stateParams, ui, AudioFactory) {
-  var streamUrl;
-  var iosTimer;
+  var iosTimer, streamUrl;
 
   var isHighBandwidth = function(){
     return $cordovaNetwork.getNetwork() == Connection.CELL_4G ||
@@ -10,67 +9,20 @@ angular.module('app.radio', [])
   };
 
   document.addEventListener("deviceready", function () {
-
-    // listen for Online event
-    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-      //ui.showToast("Device is online! Press play to resume listening.");
-      vm.isPlaying = true;
-      streamUrl.online = true;
-      play();
-    })
-
-    // listen for Offline event
-    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-      ui.showToast("Device is offline!");
-      vm.isPlaying = false;
-      streamUrl.online = false;
-      AudioFactory.pause();
-
-      if(MusicControls)
-        MusicControls.updateIsPlaying(false);
-    })
-
+    // Initial bandwidth check
     streamUrl = {
       hiFiMode: isHighBandwidth() ? true : false,
       hiFi: stream.hiFi,
-      loFi: stream.loFi,
-      online: true
+      loFi: stream.loFi
     };
 
     // Initialization
     AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
   }, false);
 
-  // Periodically check internet connection type and switch icecast server if changed
-  var connectionTimer = $interval(function() {
-      if(streamUrl.online){
-        if(isHighBandwidth()){
-          if(streamUrl.hiFiMode == false){
-            ui.showToast("Switching to high-bandwidth mode...");
-            streamUrl.hiFiMode = true;
-            if(vm.isPlaying){
-              AudioFactory.stop();
-              AudioFactory.init(streamUrl.hiFi);
-              play();
-            }
-          }
-        } else {
-          if(streamUrl.hiFiMode == true){
-            ui.showToast("Switching to low-bandwidth mode...");
-            streamUrl.hiFiMode = false;
-            if(vm.isPlaying){
-              AudioFactory.stop();
-              AudioFactory.init(streamUrl.loFi);
-              play();
-            }
-          }
-        }
-      }
-  }, 5000);
-
   var vm = angular.extend(this, {
     togglePlay: function(){
-      if (vm.isPlaying)
+      if ($rootScope.isPlaying)
         pause();
       else
         play();
@@ -113,7 +65,7 @@ angular.module('app.radio', [])
     
     AudioFactory.play(true);
     vm.paused = false;
-	  vm.isPlaying = true;
+	  $rootScope.isPlaying = true;
 	  getStreamInfo();
     timer = $interval(function() {
       getStreamInfo();
@@ -121,8 +73,8 @@ angular.module('app.radio', [])
   }
 
   function pause() {
-    vm.info = null;
-    vm.isPlaying = false;
+    $rootScope.song = null;
+    $rootScope.isPlaying = false;
     $ionicLoading.hide();
     $interval.cancel(timer);
     AudioFactory.pause();
@@ -137,17 +89,43 @@ angular.module('app.radio', [])
     }
   }
 
+  function checkBandwidth() {
+      if($rootScope.online){
+        if(isHighBandwidth()){
+          if(streamUrl.hiFiMode == false){
+            ui.showToast("Switching to high-bandwidth mode...");
+            streamUrl.hiFiMode = true;
+            if($rootScope.isPlaying){
+              AudioFactory.stop();
+              AudioFactory.init(streamUrl.hiFi);
+              play();
+            }
+          }
+        } else {
+          if(streamUrl.hiFiMode == true){
+            ui.showToast("Switching to low-bandwidth mode...");
+            streamUrl.hiFiMode = false;
+            if($rootScope.isPlaying){
+              AudioFactory.stop();
+              AudioFactory.init(streamUrl.loFi);
+              play();
+            }
+          }
+        }
+      }
+  }
+
   function getStreamInfo() {
     streamService.getStreamInfo().then(function(info) {
-      vm.info = info;
-      if(vm.info.title){
+      $rootScope.song = info;
+      if($rootScope.song.title){
         var elem = document.createElement('textarea');
-        elem.innerHTML = vm.info.title;
-        vm.info.title = elem.value;
+        elem.innerHTML = $rootScope.song.title;
+        $rootScope.song.title = elem.value;
 
-        var details = vm.info.title.split('-');
+        var details = $rootScope.song.title.split('-');
 
-        track = details.length > 1 ? details[0] : vm.info.title;
+        track = details.length > 1 ? details[0] : $rootScope.song.title;
         artist = details.length > 1 ? details[1] : "";
         album = "";
         image = "https://s3.amazonaws.com/strollio/art.jpg";
@@ -156,7 +134,7 @@ angular.module('app.radio', [])
         
         var params = [artist, track, album, image, duration, elapsedTime];
 
-        if($scope.title != vm.info.title){
+        if($scope.title != $rootScope.song.title){
 	        if(ionic.Platform.isIOS()){
 		        window.remoteControls.updateMetas(function(success){
 		            console.log(success);
@@ -225,10 +203,10 @@ angular.module('app.radio', [])
 	        }
 	    }
 
-	    $scope.title = vm.info.title;
+	    $scope.title = $rootScope.song.title;
       }
     }, function() {
-      vm.info = null;
+      $rootScope.song = null;
     });
   }
 
@@ -241,4 +219,27 @@ angular.module('app.radio', [])
         play();
   	});
   }
+
+  // Periodically check internet connection type and switch icecast server if changed
+  var connectionTimer = $interval(checkBandwidth, 5000);
+
+  $rootScope.$on('$stateChangeStart', 
+  function(event, toState, toParams, fromState, fromParams){ 
+    if(fromState.name == "app.radio"){
+      if (timer) {
+        $interval.cancel(timer);
+      }
+
+      if(iosTimer){
+        $interval.cancel(iosTimer);
+      }
+
+      if(connectionTimer){
+        $interval.cancel(connectionTimer);
+      }
+    }
+    else if(toState.name == "app.radio"){
+      connectionTimer = $interval(bandwidthCheckTimer, 5000);
+    }
+  });
 });
