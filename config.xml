@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget id="io.kirtan.audiostreaming" ios-CFBundleVersion="0.8.2" version="0.8.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Kirtan Radio</name>
-  <description>&#xD;
-     We're an Internet radio station in the process of building an open source mobile audio streaming app that can be used by anyone who wants to create their own Spotify-like app. The idea is to use the advanced Ionic HTML5 hybrid mobile app framework to create both an Android and iOS app based on the same code.&#xD;
-&#xD;
-      As an Internet radio station we're already providing an audio stream with 128k and 64k which can be listened to on a desktop computer, smart phone or Internet radio player. In our case the technology used for the Internet radio stream is Icecast (streaming media server) and Liquidsoap (streaming source client) both of which is also free open source software licensed under the GNU General Public License version 2.0 (GPLv2).&#xD;
+    <name>Kirtan Radio</name>
+    <description>
+     We're an Internet radio station in the process of building an open source mobile audio streaming app that can be used by anyone who wants to create their own Spotify-like app. The idea is to use the advanced Ionic HTML5 hybrid mobile app framework to create both an Android and iOS app based on the same code.
+
+      As an Internet radio station we're already providing an audio stream with 128k and 64k which can be listened to on a desktop computer, smart phone or Internet radio player. In our case the technology used for the Internet radio stream is Icecast (streaming media server) and Liquidsoap (streaming source client) both of which is also free open source software licensed under the GNU General Public License version 2.0 (GPLv2).
   </description>
-  <author email="nkd@24hourkirtan.fm" href="www.24hourkirtan.fm">&#xD;
-    Nanda Kishor&#xD;
+    <author email="nkd@24hourkirtan.fm" href="www.24hourkirtan.fm">
+    Nanda Kishor
   </author>
   <content src="index.html"/>
   <access origin="*"/>
