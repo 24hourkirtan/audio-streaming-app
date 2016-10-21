@@ -74,6 +74,14 @@ Place your logo and splash image files in the "resources/" folder and rename the
 ionic resources
 ```
 
+## Building the app in radio-only mode
+
+If you'd like to build the app in radio-only mode, find the line below in the file "config.xml":
+```
+<preference name="radio-only" value="false"/>
+```
+And change the value from "false" to "true". Proceed with building the app as usual.
+
 ##License
 
 This project is licensed under the GNU General Public License version 2.0 (GPLv2). For more information, see the LICENSE file in this repository. As Ionic itself is licensed under the MIT Open Source license we will have to verify how these two licenses are compatible with each other.
