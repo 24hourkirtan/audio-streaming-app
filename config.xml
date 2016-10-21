@@ -11,6 +11,8 @@
   </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <preference name="radio-only" value="true"/>
+
   <preference name="AndroidLaunchMode" value="singleInstance"/>
   <preference name="exit-on-suspend" value="false"/>
   <preference name="webviewbounce" value="false"/>
@@ -71,4 +73,5 @@
   <icon src="resources/ios/icon/icon-small@3x.png"/>
   <engine name="android" spec="~5.2.2"/>
   <plugin name="nl.kingsquare.cordova.background-audio" source="npm" />
+  <hook type="after_prepare" src="hooks/check_radio_mode.js"/>
 </widget>
