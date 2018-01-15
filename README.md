@@ -37,14 +37,9 @@ iOS: https://cordova.apache.org/docs/en/7.x/guide/platforms/ios/
 
 NOTE: If you are deploying for both Android and iOS on the same machine, clone this repo twice (one for Android and one for iOS) and then follow the instructions below for each platform in their respective directories. This is because the cordova media plugin conflicts with the keosu streaming plugin for iOS.
 
-First, run the following command:
-```
-ionic resources
-```
-
 <h2>Android</h2>
 
-Then, run
+Run
 ```
 cordova platform add android
 cordova plugin add https://github.com/homerours/cordova-music-controls-plugin
@@ -52,7 +47,7 @@ cordova plugin add https://github.com/homerours/cordova-music-controls-plugin
 
 <h2>iOS</h2>
 
-Then, run
+Run
 ```
 cordova platform add ios
 cordova plugin add https://github.com/shi11/RemoteControls
