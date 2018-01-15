@@ -1,6 +1,6 @@
 {
   "name": "io.kirtan.audiostreaming",
-  "version": "0.8.4",
+  "version": "0.8.6",
   "description": "24 Hour Kirtan Radio",
   "dependencies": {
     "com.rd11.remote-controls": "git+https://github.com/shi11/RemoteControls.git",
