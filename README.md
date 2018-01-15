@@ -24,13 +24,19 @@ Some of the information of this README might be transferred to our [wiki](https:
 
 #Installation
 
-First, install Node.js 4 (Node 5 does not work at the moment!). Then, install the latest Cordova and Ionic command-line tools. Follow the Android and iOS platform guides to install required platform dependencies. More details on http://ionicframework.com/getting-started/.
+1) Install the latest version of NodeJS. (https://nodejs.org/en/)
+2) Install the latest Cordova and Ionic command-line tools by running:
+```
+npm install -g cordova ionic
+```
+3) Follow the Android and iOS platform guides to install required platform dependencies. 
+Android: https://cordova.apache.org/docs/en/7.x/guide/platforms/android/
+iOS: https://cordova.apache.org/docs/en/7.x/guide/platforms/ios/
 
 NOTE: If you are deploying for both Android and iOS on the same machine, clone this repo twice (one for Android and one for iOS) and then follow the instructions below for each platform in their respective directories. This is because the cordova media plugin conflicts with the keosu streaming plugin for iOS.
 
 First, run the following command:
 ```
-ionic state restore
 ionic resources
 ```
 
