@@ -41,7 +41,7 @@ NOTE: If you are deploying for both Android and iOS on the same machine, clone t
 
 Run
 ```
-cordova platform add android
+cordova platform add android@6.3.0
 cordova plugin add https://github.com/homerours/cordova-music-controls-plugin
 ```
 
