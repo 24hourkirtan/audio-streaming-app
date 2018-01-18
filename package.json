@@ -3,7 +3,6 @@
   "version": "0.8.6",
   "description": "24 Hour Kirtan Radio",
   "dependencies": {
-    "com.rd11.remote-controls": "git+https://github.com/shi11/RemoteControls.git",
     "cordova-android": "~5.2.2",
     "cordova-ios": "~4.5.4",
     "cordova-plugin-compat": "^1.2.0",
@@ -57,7 +56,6 @@
     ],
     "plugins": {
       "nl.kingsquare.cordova.background-audio": {},
-      "com.rd11.remote-controls": {},
       "cordova-plugin-device": {},
       "cordova-plugin-console": {},
       "cordova-plugin-whitelist": {},

@@ -1,5 +1,5 @@
 angular.module('app.radio', [])
-.controller('RadioCtrl', function($interval, $ionicLoading, streamService, $cordovaNetwork, $scope, $rootScope, $stateParams, ui, AudioFactory) {
+.controller('RadioCtrl', function($interval, $ionicLoading, $ionicPlatform, streamService, $cordovaNetwork, $scope, $rootScope, $stateParams, ui, AudioFactory) {
   var iosTimer, streamUrl;
 
   var isHighBandwidth = function(){
@@ -8,7 +8,43 @@ angular.module('app.radio', [])
         $cordovaNetwork.getNetwork() == Connection.WIFI;
   };
 
-  document.addEventListener("deviceready", function () {
+  function events(action) {
+    console.log("Action", action);
+    const message = JSON.parse(action).message;
+      switch(message) {
+          case 'music-controls-next':
+              // Do something
+              break;
+          case 'music-controls-previous':
+              // Do something
+              break;
+          case 'music-controls-pause':
+              pause();
+              MusicControls.updateIsPlaying(false);
+              break;
+          case 'music-controls-play':
+              play();
+              MusicControls.updateIsPlaying(true);
+              break;
+          case 'music-controls-destroy':
+              // Do something
+              break;
+          // Headset events (Android only)
+          case 'music-controls-media-button' :
+              // Do something
+              break;
+          case 'music-controls-headset-unplugged':
+              // Do something
+              break;
+          case 'music-controls-headset-plugged':
+              // Do something
+              break;
+          default:
+              break;
+      }
+  }
+
+  $ionicPlatform.ready(function() {
     // Initial bandwidth check
     streamUrl = {
       hiFiMode: isHighBandwidth() ? true : false,
@@ -18,7 +54,10 @@ angular.module('app.radio', [])
 
     // Initialization
     AudioFactory.init(streamUrl.hiFiMode ? streamUrl.hiFi : streamUrl.loFi);
-  }, false);
+
+    MusicControls.subscribe(events);
+    MusicControls.listen();
+  });
 
   var vm = angular.extend(this, {
     togglePlay: function(){
@@ -135,14 +174,7 @@ angular.module('app.radio', [])
         var params = [artist, track, album, image, duration, elapsedTime];
 
         if($scope.title != $rootScope.song.title){
-	        if(ionic.Platform.isIOS()){
-		        window.remoteControls.updateMetas(function(success){
-		            console.log(success);
-		        }, function(fail){
-		            console.log(fail);
-		        }, params);
-	        }
-	        else{
+            console.log("Creating music controls...");
 	        	MusicControls.create({
 				    track       : track,        // optional, default : ''
 				    artist      : artist,                       // optional, default : ''
@@ -159,65 +191,17 @@ angular.module('app.radio', [])
 				    // text displayed in the status bar when the notification (and the ticker) are updated
 				    ticker    : 'Now playing ' + track
 	    		}, function(success){
-	    				//console.log(success);
-
-	    				function events(action) {
-	    				    switch(action) {
-	    				        case 'music-controls-next':
-	    				            // Do something
-	    				            break;
-	    				        case 'music-controls-previous':
-	    				            // Do something
-	    				            break;
-	    				        case 'music-controls-pause':
-	    				            pause();
-	    				            MusicControls.updateIsPlaying(false);
-	    				            break;
-	    				        case 'music-controls-play':
-	    				            play();
-	    				            MusicControls.updateIsPlaying(true);
-	    				            break;
-	    				        case 'music-controls-destroy':
-	    				            // Do something
-	    				            break;
-	    				        // Headset events (Android only)
-	    				        case 'music-controls-media-button' :
-	    				            // Do something
-	    				            break;
-	    				        case 'music-controls-headset-unplugged':
-	    				            // Do something
-	    				            break;
-	    				        case 'music-controls-headset-plugged':
-	    				            // Do something
-	    				            break;
-	    				        default:
-	    				            break;
-	    				    }
-	    				}
-
-	    				MusicControls.subscribe(events);
-	    				MusicControls.listen();
-	    			}, function(error){
-	    				console.log(error);
-	    			});
-	        }
-	    }
+	    			console.log(success);
+    			}, function(error){
+    				console.log(error);
+    			});
+        }
 
 	    $scope.title = $rootScope.song.title;
       }
     }, function() {
       $rootScope.song = null;
     });
-  }
-
-	//listen for the event
-  if(ionic.Platform.isIOS()){
-  	document.addEventListener("remote-event", function(event) {
-  		if(event.remoteEvent.subtype == "pause")
-        pause();
-      else if(event.remoteEvent.subtype == "play")
-        play();
-  	});
   }
 
   // Periodically check internet connection type and switch icecast server if changed
