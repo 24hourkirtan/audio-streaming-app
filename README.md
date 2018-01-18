@@ -42,7 +42,6 @@ NOTE: If you are deploying for both Android and iOS on the same machine, clone t
 Run
 ```
 cordova platform add android@6.3.0
-cordova plugin add https://github.com/homerours/cordova-music-controls-plugin
 ```
 
 <h2>iOS</h2>
@@ -50,7 +49,6 @@ cordova plugin add https://github.com/homerours/cordova-music-controls-plugin
 Run
 ```
 cordova platform add ios
-cordova plugin add https://github.com/shi11/RemoteControls
 cordova plugin add nl.kingsquare.cordova.background-audio
 ```
 

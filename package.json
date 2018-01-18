@@ -10,6 +10,7 @@
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-media": "^5.0.1",
+    "cordova-plugin-music-controls": "^2.1.4",
     "cordova-plugin-network-information": "^2.0.1",
     "cordova-plugin-splashscreen": "^5.0.1",
     "cordova-plugin-statusbar": "^2.4.1",
@@ -65,7 +66,8 @@
       "cordova-plugin-file": {},
       "cordova-plugin-compat": {},
       "cordova-plugin-media": {},
-      "ionic-plugin-keyboard": {}
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-music-controls": {}
     }
   }
 }
