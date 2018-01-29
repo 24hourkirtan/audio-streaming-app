@@ -156,6 +156,7 @@ angular.module('app.radio', [])
 
   function getStreamInfo() {
     streamService.getStreamInfo().then(function(info) {
+
       $rootScope.song = info;
       if($rootScope.song.title){
         var elem = document.createElement('textarea');
@@ -172,7 +173,7 @@ angular.module('app.radio', [])
         elapsedTime = 0;
         
         var params = [artist, track, album, image, duration, elapsedTime];
-
+        console.log(params);
         if($scope.title != $rootScope.song.title){
             console.log("Creating music controls...");
 	        	MusicControls.create({
@@ -195,9 +196,8 @@ angular.module('app.radio', [])
     			}, function(error){
     				console.log(error);
     			});
+          $scope.title = $rootScope.song.title;
         }
-
-	    $scope.title = $rootScope.song.title;
       }
     }, function() {
       $rootScope.song = null;
