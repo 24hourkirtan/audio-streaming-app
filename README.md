@@ -14,7 +14,7 @@ The app will also allow listeners to stream their custom playlist based on their
 
 ## Roadmap
 
-* Version 0.8.x (Alpha) released in February, 2016
+* Version 0.8.x released in February, 2016
 * Version 0.9.x based on Ionic v1 to be relased in Q1/2018
 * Version 1.0.x based on Ionic v3 to be released after Q1/2018
 
