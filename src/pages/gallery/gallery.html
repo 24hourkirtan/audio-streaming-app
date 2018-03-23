@@ -1,0 +1,15 @@
+<ion-content padding>
+	<div class="background" [ngStyle]="{'background': 'center top / 100% url(/assets/imgs/' + background + '.jpg)'}"></div>
+	<div class="gallery-selection">
+		<div class="gallery-title">Photo Gallery Selection</div>
+		<div class="option" (click)="selectBackground('KRFM_DSKTP_02')">Krishna</div>
+		<div class="option" (click)="selectBackground('KRFM_DSKTP_03')">Caitanya</div>
+		<div class="option" (click)="selectBackground('KRFM_DSKTP_04')">Prabhupada</div>
+		<div class="option" (click)="selectBackground('KRFM_DSKTP_05')">India</div>
+	</div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="center">Aindra Dasa - Vrindavana Mellows Track 8</ion-title>
+  </ion-toolbar>
+</ion-footer>

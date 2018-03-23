@@ -1,14 +1,8 @@
 {
   "name": "kirtanradio",
-  "app_id": "",
+  "app_id": "io.kirtan.audiostreaming",
+  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  },
-  "type": "ionic1",
-  "watchPatterns": [
-    "scss/**/*",
-    "www/**/*",
-    "!www/lib/**/*",
-    "!www/**/*.map"
-  ]
+  }
 }

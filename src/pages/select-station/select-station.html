@@ -1,0 +1,30 @@
+<ion-content padding>
+	<div id="left">
+		<div class="select-image-container">
+			<img src="assets/imgs/1.png" class="select-image">
+			<img src="assets/imgs/2.png" class="select-image">
+			<img src="assets/imgs/3.png" class="select-image">
+		</div>
+	</div>
+    <div id="right">
+    	<div class="select-station-container">
+	    	<div class="instruction">SELECT YOUR RADIO STATION:</div>
+	    	<div class="station-name" (click)="selectStation('Raydio')"><a>Raydio</a></div>
+	    	<div class="description">Contemporary vaishnava music production in 
+			different genres: rock, hip-hop, 
+			electronica ...</div>
+			<div class="or">OR</div>
+			<div class="station-name" (click)="selectStation('24 Hour')">24 Hour <a>Kirtan</a> Radio</div>
+			<div class="description">Simply the best 
+			Gaudiya style Kirtan from temples and 
+			Kirtan events 
+			around the World.</div>
+			<div class="station-name">.fm</div>
+	    </div>
+	</div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="center">Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

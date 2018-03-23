@@ -1,0 +1,41 @@
+page-stations {
+	.scroll-content {
+		margin: 9px !important;
+		background: center / 160% url("../assets/imgs/background.jpg");
+	}
+
+	.toolbar-background, .header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
+		border: none;
+		background-color: white;
+	}
+
+	.radio-station-selection {
+		position: absolute;
+	  	top: 50%;
+	  	transform: translateY(-65%);
+	  	padding: 14px;
+	  	margin-right: 5%;
+	  	background: rgb(255, 255, 255); /* Fall-back for browsers that don't
+                                    support rgba */
+    	background: rgba(255, 255, 255, .85);
+	}
+
+	.selection-title {
+		color: #BF4049;
+		font-family: "Bodoni";
+		font-size: 20px;
+		margin-bottom: 8px;
+	}
+
+	.station {
+		color: #8E762C;
+		font-family: "Bodoni";
+		font-size: 30px;
+		margin-bottom: 6px;
+	}
+
+	.description {
+		font-size: 15px;
+		line-height: 22px;
+	}
+}

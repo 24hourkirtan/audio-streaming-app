@@ -1,0 +1,35 @@
+page-info {
+	.scroll-content {
+		margin: 9px !important;
+		background: center / 160% url("../assets/imgs/KRFM_DSKTP_08.jpg");
+	}
+
+	.toolbar-background, .header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
+		border: none;
+		background-color: white;
+	}
+
+	.info-selection {
+		margin-top: 10px;
+	  	padding: 14px;
+	  	margin-right: 5%;
+	  	/*
+	  	background: rgb(255, 255, 255);
+    	background: rgba(255, 255, 255, .85);
+    	*/
+	}
+
+	.info-title {
+		color: #BF4049;
+		font-family: "Bodoni";
+		font-size: 20px;
+		margin-bottom: 8px;
+	}
+
+	.option {
+		color: #8E762C;
+		font-family: "Bodoni";
+		font-size: 30px;
+		margin-bottom: 6px;
+	}
+}
