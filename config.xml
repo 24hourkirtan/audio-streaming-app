@@ -9,7 +9,7 @@
     <author email="nkd@24hourkirtan.fm" href="www.24hourkirtan.fm">
     Nanda Kishor
     </author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.12:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -87,6 +87,9 @@
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <engine name="android" spec="~7.0.0" />
     <allow-navigation href="http://192.168.1.12:8100" />
+    <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <plugin name="cordova-plugin-media" spec="^5.0.2" />
+    <plugin name="cordova-plugin-music-controls" spec="https://github.com/homerours/cordova-music-controls-plugin" />
+    <engine name="android" spec="~7.0.0" />
 </widget>

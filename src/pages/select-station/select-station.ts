@@ -1,23 +1,20 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
+import { AudioProvider } from '../../providers/audio/audio';
 
 @Component({
   selector: 'page-select-station',
   templateUrl: 'select-station.html'
 })
 export class SelectStationPage {
+  stations : any = [];
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, public audio : AudioProvider) {
+    this.stations = audio.getStations();
   }
 
-  selectStation(station){
-  	if(station == "Raydio"){
-		this.navCtrl.push(TabsPage);
-  	}
-  	else{
-  		this.navCtrl.push(TabsPage);
-  	}
+  selectStation(index){
+    localStorage.setItem("stationIndex", index);
   }
 }

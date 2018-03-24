@@ -1,6 +1,6 @@
-<ion-content padding>
-	<div class="background" [ngStyle]="{'background': 'center top / 100% url(/assets/imgs/' + background + '.jpg)'}"></div>
-	<div class="gallery-selection">
+<ion-content padding (tap)="tapped()">
+	<div class="background" [ngStyle]="{'background': 'center top / 120% url(/assets/imgs/' + background + '.jpg)'}"></div>
+	<div class="gallery-selection" [class.visible]="visible" [class.hidden]="!visible">
 		<div class="gallery-title">Photo Gallery Selection</div>
 		<div class="option" (click)="selectBackground('KRFM_DSKTP_02')">Krishna</div>
 		<div class="option" (click)="selectBackground('KRFM_DSKTP_03')">Caitanya</div>

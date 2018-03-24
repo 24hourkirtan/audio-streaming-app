@@ -41,14 +41,14 @@ NOTE: If you are deploying for both Android and iOS on the same machine, clone t
 
 Run
 ```
-cordova platform add android@6.3.0
+ionic cordova platform add android@6.3.0
 ```
 
 ## iOS
 
 Run
 ```
-cordova platform add ios
+ionic cordova platform add ios
 cordova plugin add nl.kingsquare.cordova.background-audio
 ```
 
@@ -61,7 +61,7 @@ ADDITIONAL NOTE: If the API server has a self-signed SSL certificate, please fol
 
 Run:
 ```
-cordova run android
+ionic cordova run android
 ```
 
 ## iOS
@@ -72,16 +72,8 @@ Open the Xcode project in the "platforms/ios" project folder and deploy it to a 
 
 Place your logo and splash image files in the "resources/" folder and rename them to "icon.png" and "splash.png", respectively. Then run the following command:
 ```
-ionic resources
+ionic cordova resources
 ```
-
-## Building the app in radio-only mode
-
-If you'd like to build the app in radio-only mode, find the line below in the file "config.xml":
-```
-<preference name="radio-only" value="false"/>
-```
-And change the value from "false" to "true". Proceed with building the app as usual.
 
 ## License
 

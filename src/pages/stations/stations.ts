@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the StationsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Events } from 'ionic-angular';
+import { AudioProvider } from '../../providers/audio/audio';
 
 @IonicPage()
 @Component({
@@ -14,20 +9,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'stations.html',
 })
 export class StationsPage {
+  stations : any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public audio : AudioProvider) {
+
+    this.stations = audio.getStations();
+
+	  events.subscribe('track', (title) => {
+	   
+	    
+	  });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StationsPage');
-  }
-
-  selectStation(station){
-  	if(station == "Raydio"){
-
-  	}
-  	else{
-  	
-  	}
+  selectStation(index){
+    localStorage.setItem("stationIndex", index);
   }
 }

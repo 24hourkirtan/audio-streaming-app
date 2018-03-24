@@ -1,8 +1,7 @@
 <ion-content padding>
 	<div class="radio-station-selection">
 		<div class="selection-title">Radio Station Selection</div>
-		<div class="station" (click)="selectStation('24 Hour')">24 Hour Kirtan Radio</div>
-		<div class="station" (click)="selectStation('Raydio')">Raydio</div>
+		<div class="station" (click)="selectStation(i)" *ngFor="let station of stations; index as i">{{station.name}}</div>
 		<div class="description">We’re currently building our music library. You’re kindly invited to send us your music (mp3 files, at least 192kbps) to: 
 		<br>
 		info@raydiokirtan.fm</div>
