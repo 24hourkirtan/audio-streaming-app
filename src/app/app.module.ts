@@ -14,9 +14,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AudioProvider } from '../providers/audio/audio';
 import { Network } from '@ionic-native/network';
-import { Media, MediaObject } from '@ionic-native/media';
+import { Media } from '@ionic-native/media';
 import { APP_CONFIG, AppConfig } from './app-config';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { MusicControls } from '@ionic-native/music-controls';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     Network,
     Media,
     HttpClientModule,
-    { provide: APP_CONFIG, useValue: AppConfig }
+    { provide: APP_CONFIG, useValue: AppConfig },
+    MusicControls
   ]
 })
 export class AppModule {}

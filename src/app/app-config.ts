@@ -16,10 +16,10 @@ export const AppConfig: ApplicationConfig = {
 	    loFi: 'http://icecast.24hourkirtan.fm:8000/64k.mp3'
 	}, {
 		name: "Raydio",
-		metadata_url: "http://icecast.24hourkirtan.fm:8000/status-json.xsl",
+		metadata_url: "http://server.24hourkirtan.fm:8000/status-json.xsl",
 		api_url: "https://api.kirtan.io",
-		hiFi: 'http://icecast.24hourkirtan.fm:8000/128k.mp3',
-	    loFi: 'http://icecast.24hourkirtan.fm:8000/64k.mp3'
+		hiFi: 'http://server.24hourkirtan.fm:8000/raydio128k.mp3',
+	    loFi: 'http://server.24hourkirtan.fm:8000/raydio64k.mp3'
 	}]
 };
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
 import { AudioProvider } from '../../providers/audio/audio';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-select-station',
@@ -16,5 +16,6 @@ export class SelectStationPage {
 
   selectStation(index){
     localStorage.setItem("stationIndex", index);
+    this.navCtrl.setRoot(TabsPage);
   }
 }

@@ -2,5 +2,5 @@
   <ion-tab [root]="tab1Root" tabIcon="ios-information"></ion-tab>
   <ion-tab [root]="tab2Root" tabIcon="ios-photos-outline"></ion-tab>
   <ion-tab [root]="tab3Root" tabIcon="ios-radio-outline"></ion-tab>
-  <ion-tab [tabIcon]="playbackIcon" (ionSelect)="togglePlayback()"></ion-tab>
+  <ion-tab [tabIcon]="playing ? 'ios-pause' : 'ios-play'" (ionSelect)="togglePlayback()"></ion-tab>
 </ion-tabs>

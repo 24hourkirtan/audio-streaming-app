@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.9.0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.kirtan.audiostreaming" version="0.9.0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Kirtan Radio</name>
     <description>
      We're an Internet radio station in the process of building an open source mobile audio streaming app that can be used by anyone who wants to create their own Spotify-like app. The idea is to use the advanced Ionic HTML5 hybrid mobile app framework to create both an Android and iOS app based on the same code.
@@ -18,13 +18,15 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="21" />
+    <preference name="android-targetSdkVersion" value="23" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="1000" />
+    <preference name="orientation" value="portrait" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -90,6 +92,8 @@
     <allow-navigation href="http://192.168.1.12:8100" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-media" spec="^5.0.2" />
-    <plugin name="cordova-plugin-music-controls" spec="https://github.com/homerours/cordova-music-controls-plugin" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
+    <plugin name="nl.kingsquare.cordova.background-audio" spec="^1.0.1" />
+    <plugin name="cordova-plugin-music-controls" spec="^2.1.4" />
     <engine name="android" spec="~7.0.0" />
 </widget>

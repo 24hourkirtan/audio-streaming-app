@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 
 import { InfoPage } from '../info/info';
 import { GalleryPage } from '../gallery/gallery';
@@ -16,31 +16,24 @@ export class TabsPage {
   tab3Root = StationsPage;
 
   playing : boolean = false;
-  playbackIcon : any = "ios-play";
 
-  constructor(public events: Events, public audio : AudioProvider) {
-  /*
-    this.network.onConnect().subscribe(() => {
-      console.log('network connected!');
-      // We just got a connection but we need to wait briefly
-       // before we determine the connection type. Might need to wait.
-      // prior to doing any api requests as well.
-      setTimeout(() => {
-        if (this.network.type === 'wifi') {
-          console.log('we got a wifi connection, woohoo!');
-        }
-      }, 3000);
+  constructor(public events: Events, public audio : AudioProvider, private chRef: ChangeDetectorRef) {
+    events.subscribe('play', () => {
+        this.playing = true;
+        chRef.detectChanges();
     });
-    */
+
+    events.subscribe('pause', () => {
+        this.playing = false;
+        chRef.detectChanges();
+    });
   }
 
   togglePlayback(){
   	if(!this.playing){
-  		this.playbackIcon = "ios-pause";
       this.audio.play();
   	}
   	else{
-  		this.playbackIcon = "ios-play";
       this.audio.pause();
   	}
   	this.playing = !this.playing;
