@@ -18,6 +18,8 @@ import { Media } from '@ionic-native/media';
 import { APP_CONFIG, AppConfig } from './app-config';
 import { HttpClientModule } from '@angular/common/http';
 import { MusicControls } from '@ionic-native/music-controls';
+import { File } from '@ionic-native/file';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { MusicControls } from '@ionic-native/music-controls';
     Media,
     HttpClientModule,
     { provide: APP_CONFIG, useValue: AppConfig },
-    MusicControls
+    MusicControls,
+    File
   ]
 })
 export class AppModule {}

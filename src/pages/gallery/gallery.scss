@@ -9,6 +9,11 @@ page-gallery {
 		height: 100%;
 		width: 100%;
 		z-index: -9999;
+		-webkit-transition: background 1.5s linear;
+		-moz-transition: background 1.5s linear;
+		-o-transition: background 1.5s linear;
+		-ms-transition: background 1.5s linear;
+		transition: background 1.5s linear;
 	}
 
 	.toolbar-background, .header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
@@ -18,10 +23,9 @@ page-gallery {
 
 	.gallery-selection {
 		margin: 8%;
-	  	/*
 	  	background: rgb(255, 255, 255);
     	background: rgba(255, 255, 255, .85);
-    	*/
+    	padding: 14px;
 	}
 
 	.gallery-title {

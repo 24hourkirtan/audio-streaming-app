@@ -9,7 +9,7 @@
     <author email="nkd@24hourkirtan.fm" href="www.24hourkirtan.fm">
     Nanda Kishor
     </author>
-    <content original-src="index.html" src="http://192.168.1.12:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

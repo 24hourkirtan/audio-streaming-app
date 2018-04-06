@@ -1,11 +1,8 @@
 <ion-content padding (tap)="tapped()">
-	<div class="background" [ngStyle]="{'background': 'center top / 120% url(./assets/imgs/' + background + '.jpg)'}"></div>
+	<div class="background" *ngIf="background" [ngStyle]="{'background': 'center top / 120% url(./assets/imgs/galleries/' + background + ')'}"></div>
 	<div class="gallery-selection" [class.visible]="visible" [class.hidden]="!visible">
 		<div class="gallery-title">Photo Gallery Selection</div>
-		<div class="option" (click)="selectBackground('KRFM_DSKTP_02')">Krishna</div>
-		<div class="option" (click)="selectBackground('KRFM_DSKTP_03')">Caitanya</div>
-		<div class="option" (click)="selectBackground('KRFM_DSKTP_04')">Prabhupada</div>
-		<div class="option" (click)="selectBackground('KRFM_DSKTP_05')">India</div>
+		<div class="option" (click)="selectBackground(gallery.name)" *ngFor="let gallery of galleries; index as i">{{gallery.name}}</div>
 	</div>
 </ion-content>
 <ion-footer>
