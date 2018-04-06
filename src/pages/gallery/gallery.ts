@@ -19,7 +19,7 @@ import { File } from '@ionic-native/file';
  	galleries: any = [];
  	photos: any = [];
  	galleryTimer : any;
- 	galleryCounter : Number = 0;
+ 	galleryCounter : any;
 
  	constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public audio : AudioProvider, private file: File) {
 
