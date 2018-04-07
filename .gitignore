@@ -33,3 +33,8 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+kirtan.apk
+keystore_data_values.rtf
+24hourkirtan.keystore
+node_modules/

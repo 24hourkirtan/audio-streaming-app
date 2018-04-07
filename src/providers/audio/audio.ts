@@ -117,7 +117,14 @@ export class AudioProvider {
 		let index = Number(localStorage.getItem("stationIndex"));
 		this.http.get(this.stations[index].metadata_url).subscribe( data => {
 			if(data && data.hasOwnProperty('icestats')){
-				let info = data['icestats']['source'][0];
+				let source = data['icestats']['source'];
+				let info = source[0];
+				for(let i = 0; i < source.length; i++){
+					if(this.stations[index].name == source[i].server_name){
+						info = source[i];
+						break;
+					}
+				}
 
 		        if(this.title != info.title){
 		        	this.title = info.title;
