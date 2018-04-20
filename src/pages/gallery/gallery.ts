@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { AudioProvider } from '../../providers/audio/audio';
 import { File } from '@ionic-native/file';
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 
  @IonicPage()
  @Component({
@@ -13,15 +14,17 @@ import { File } from '@ionic-native/file';
 
  	background : any = "";
  	visible: any = true;
- 	fadeTimer : Number = 2000;
+ 	fadeTimer : Number = 3000;
  	title : string = ""; 
  	gallery : string = "";
  	galleries: any = [];
  	photos: any = [];
  	galleryTimer : any;
  	galleryCounter : any;
+ 	rotationTimer : Number = 8000;
+ 	cacheImage: any;
 
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public audio : AudioProvider, private file: File) {
+ 	constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public audio : AudioProvider, private file: File, public sanitizer: DomSanitizer) {
 
  	  events.subscribe('track', (data) => {
 	    this.title = data.title;
@@ -55,6 +58,7 @@ import { File } from '@ionic-native/file';
  	}
 
  	selectBackground(gallery){
+ 	console.log(gallery);
  		localStorage.setItem("gallery", gallery);
  		this.gallery = gallery;
  		
@@ -74,12 +78,15 @@ import { File } from '@ionic-native/file';
  		this.background = this.gallery + '/' + this.photos[this.galleryCounter].name;
  		this.galleryCounter++;
 
+ 		this.cacheImage = this.sanitizer.bypassSecurityTrustResourceUrl('./assets/imgs/galleries/' + this.gallery + '/' + this.photos[this.galleryCounter].name);
+
 		this.galleryTimer = setInterval(()=>{
 			this.background = this.gallery + '/' + this.photos[this.galleryCounter].name;
 			this.galleryCounter++;
 			if(this.galleryCounter >= this.photos.length)
 				this.galleryCounter = 0;
-		}, 8000);
+			this.cacheImage = this.sanitizer.bypassSecurityTrustResourceUrl('./assets/imgs/galleries/' + this.gallery + '/' + this.photos[this.galleryCounter].name);
+		}, this.rotationTimer);
  	}
 
  	ionSelected(){

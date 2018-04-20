@@ -1,12 +1,13 @@
 <ion-content padding (tap)="tapped()">
-	<div class="background" *ngIf="background" [ngStyle]="{'background': 'center top / 120% url(./assets/imgs/galleries/' + background + ')'}"></div>
 	<div class="gallery-selection" [class.visible]="visible" [class.hidden]="!visible">
 		<div class="gallery-title">Photo Gallery Selection</div>
 		<div class="option" (click)="selectBackground(gallery.name)" *ngFor="let gallery of galleries; index as i">{{gallery.name}}</div>
 	</div>
+	<div class="background" *ngIf="background" [ngStyle]="{'background': 'center center / 120% url(./assets/imgs/galleries/' + background + ')'}"></div>
+	<link rel="preload" [href]="cacheImage" as="image">
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-title class="center">{{title}}</ion-title>
+    <ion-title class="center marquee" [innerHTML]="title"></ion-title>
   </ion-toolbar>
 </ion-footer>
