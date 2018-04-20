@@ -95,11 +95,11 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="nl.kingsquare.cordova.background-audio" spec="^1.0.1" />
     <plugin name="cordova-plugin-music-controls" spec="^2.1.4" />
-    <engine name="android" spec="~7.0.0" />
     <allow-navigation href="http://192.168.5.111:8100" />
     <allow-navigation href="http://192.168.1.133:8100" />
     <allow-navigation href="http://127.0.0.1:8100" />
     <allow-navigation href="http://localhost:8100" />
     <allow-navigation href="http://192.168.1.2:8100" />
     <allow-navigation href="http://10.0.0.2:8100" />
+    <engine name="android" spec="~7.0.0" />
 </widget>
