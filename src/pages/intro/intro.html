@@ -1,3 +1,7 @@
-<ion-content padding>
-
+<ion-content [ngStyle]="{'background': 'linear-gradient(' + angle + 'deg, #8b3eb7, #bf4049), linear-gradient(60deg, #8b3eb7, #bf4049)'}">
+	<div class="container">
+		<progress-bar [progress]="loadProgress"></progress-bar>
+		<div class="text" [innerHTML]="text">
+		</div>
+	</div>
 </ion-content>

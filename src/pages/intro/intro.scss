@@ -1,6 +1,25 @@
 page-intro {
-	.scroll-content {
-		margin: 9px !important;
-		background: center / 190% url("../assets/imgs/intro.jpg");
+	.progress-outer {
+		margin-top: 15%;
+	}
+
+	.text {
+		font-family: "Bodoni";
+		font-size: 40px;
+		color: #bf4049;
+		padding-left: 22px;
+		padding-right: 48px;
+		letter-spacing: 1.5px;
+		margin-top: 20%;
+		margin-right: 30px;
+	}
+
+	.container {
+		background-color: white;
+		top: 10px;
+		left: 10px;
+		right: 10px;
+		bottom: 10px;
+		position: absolute;
 	}
 }

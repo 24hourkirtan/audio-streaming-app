@@ -4,7 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { IntroPage } from '../pages/intro/intro';
-import { SelectStationPage } from '../pages/select-station/select-station';
 import { InfoPage } from '../pages/info/info';
 import { GalleryPage } from '../pages/gallery/gallery';
 import { StationsPage } from '../pages/stations/stations';
@@ -19,17 +18,17 @@ import { APP_CONFIG, AppConfig } from './app-config';
 import { HttpClientModule } from '@angular/common/http';
 import { MusicControls } from '@ionic-native/music-controls';
 import { File } from '@ionic-native/file';
-
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 @NgModule({
   declarations: [
     MyApp,
     IntroPage,
-    SelectStationPage,
     InfoPage,
     GalleryPage,
     StationsPage,
-    TabsPage
+    TabsPage,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +39,6 @@ import { File } from '@ionic-native/file';
   entryComponents: [
     MyApp,
     IntroPage,
-    SelectStationPage,
     InfoPage,
     GalleryPage,
     StationsPage,

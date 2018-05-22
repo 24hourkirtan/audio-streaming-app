@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-import { SelectStationPage } from '../select-station/select-station';
 
 @IonicPage()
 @Component({
@@ -9,14 +8,28 @@ import { SelectStationPage } from '../select-station/select-station';
   templateUrl: 'intro.html',
 })
 export class IntroPage {
+
+  text : string = "Welcome to the world of Kirtan, the radio app for traditional Kirtan and contemporary Vaishnava music.";
+  loadProgress: any = 0;
+  angle : any = 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	setInterval(() => {
+  		if(this.loadProgress < 100){
+			this.loadProgress += 0.24;
+  		}
+  		this.angle += 1;
+
+  		if(this.angle > 360)
+  			this.angle = 0;
+	}, 10);
+
 	setTimeout(() => {
-		if(!localStorage.getItem("stationIndex")){
-	    	this.navCtrl.setRoot(SelectStationPage);
-	    }
-	    else {
-	    	this.navCtrl.setRoot(TabsPage);
-	    }
-	}, 2000);
+		this.text = "Hare Krishna,<br>Hare Krishna,<br>Krishna Krishna,<br>Hare Krishna,<br>Hare Rama,<br>Hare Rama,<br>Rama Rama,<br>Hare Hare.";
+	}, 2500);
+
+	setTimeout(() => {
+	    this.navCtrl.setRoot(TabsPage);
+	}, 5000);
   }
 }

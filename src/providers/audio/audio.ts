@@ -113,15 +113,29 @@ export class AudioProvider {
 		clearInterval(this.infoTimer);
 	}
 
+	getInfo(){
+		return new Promise((resolve, reject) => {
+			this.http.get(this.config.METADATA_URL).subscribe( data => {
+				if(data && data.hasOwnProperty('icestats')){
+					let stations = data['icestats']['source'];
+					resolve(stations);
+				}
+			});
+		});
+	}
+
 	getStreamInfo() {
 		let index = Number(localStorage.getItem("stationIndex"));
-		this.http.get(this.stations[index].metadata_url).subscribe( data => {
+		this.http.get(this.config.METADATA_URL).subscribe( data => {
 			if(data && data.hasOwnProperty('icestats')){
-				let source = data['icestats']['source'];
-				let info = source[0];
-				for(let i = 0; i < source.length; i++){
-					if(this.stations[index].name == source[i].server_name){
-						info = source[i];
+				let stations = data['icestats']['source'];
+				let info = {
+					title: ""
+				};
+
+				for(let i = 0; i < stations.length; i++){
+					if(this.stations[index].name == stations[i].server_name){
+						info = stations[i];
 						break;
 					}
 				}

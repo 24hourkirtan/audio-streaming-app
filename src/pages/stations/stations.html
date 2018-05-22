@@ -1,10 +1,33 @@
 <ion-content padding>
-	<div class="radio-station-selection">
-		<div class="selection-title">Radio Station Selection</div>
-		<div class="station" (click)="selectStation(i)" *ngFor="let station of stations; index as i">{{station.name}}</div>
-		<div class="description">We’re currently building our music library. You’re kindly invited to send us your music (mp3 files, at least 192kbps) to: 
-		<br>
-		info@raydiokirtan.fm</div>
+	<div class="background"></div>
+    <div id="left">
+    	<div class="select-station-container">
+    		<div class="channels">Channels</div>
+    		<!--
+	    	<div class="description" *ngFor="let station of stations; index as i">
+	    		<b>0{{1+i}}</b> {{station.description}}
+	    	</div>
+	    	-->
+	    	<div class="description">
+	    		<b>01</b> Gaudiya style Kirtan from temples & events worldwide.
+	    	</div>
+	    	<div class="description">
+	    		<b>02</b> Contemporary Vaishnava music.
+	    	</div>
+	    	<div class="border"></div>
+			<div class="station" *ngFor="let station of stations; index as i" (click)="selectStation(i)">
+				<div class="station-name">{{station.name}}</div>
+				<p>Now: {{station.artist}}</p>
+			</div>
+			<div class="fm">.fm</div>
+	    </div>
+	</div>
+	<div id="right">
+		<div class="select-image-container">
+			<img src="assets/imgs/1.png" class="select-image">
+			<img src="assets/imgs/2.png" class="select-image">
+			<img src="assets/imgs/3.png" class="select-image">
+		</div>
 	</div>
 </ion-content>
 <ion-footer>
