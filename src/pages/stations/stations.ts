@@ -44,32 +44,32 @@ export class StationsPage {
   }
 
   ionViewDidLoad(){
-    var self = this;
     this.title = this.audio.getTrackTitle();
 
-    for(var i = 0; i < self.stations.length; i++){
-      self.audio.getInfo(i).then(info => {
-      console.log(info);
-        self.stations[info.index].title = info.title;
-        self.stations[info.index].artist = info.title.split('-')[0];
-        self.stations[info.index].description = info.server_description;
-      });
-    }
+    this.getInfo();
 
-    for(var i = 0; i < self.stations.length; i++){
-      self.stations[i].selected = false;
+    for(var i = 0; i < this.stations.length; i++){
+      this.stations[i].selected = false;
     }
     let index = Number(localStorage.getItem("stationIndex")) ? Number(localStorage.getItem("stationIndex")) : 0;
     this.stations[index].selected = true;
 
     this.infoTimer = setInterval(()=>{
-      for(var i = 0; i < self.stations.length; i++){
-        self.audio.getInfo(i).then(info => {
-          self.stations[info.index].title = info.title;
-          self.stations[info.index].artist = info.title.split('-')[0];
-          self.stations[info.index].description = info.server_description;
-        });
-      }
+      this.getInfo();
     }, 5000);
+  }
+
+  getInfo(){
+    var self = this;
+    for(var i = 0; i < self.stations.length; i++){
+      self.audio.getInfo(i).then(info => {
+        if(info){
+          this.temp = info;
+          self.stations[this.temp.index].title = this.temp.title;
+          self.stations[this.temp.index].artist = this.temp.title.split('-')[0];
+          self.stations[this.temp.index].description = this.temp.server_description;
+        }
+      });
+    }
   }
 }

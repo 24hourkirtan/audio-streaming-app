@@ -119,7 +119,8 @@ export class AudioProvider {
 				if(data && data.hasOwnProperty('icestats')){
 					let stations = data['icestats']['source'];
 					let info = {
-						title: ""
+						title: "",
+						index: 0
 					};
 
 					for(let i = 0; i < stations.length; i++){
