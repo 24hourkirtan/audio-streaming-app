@@ -39,3 +39,38 @@
 .toolbar-ios ion-title {
 	padding: 0 0px 1px;
 }
+
+ion-icon {
+    &[class*="custom-"] {
+        // Instead of using the font-based icons
+        // We're applying SVG masks
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+    }
+    // custom icons
+    &[class*="custom-info"] {
+        mask-image: url(../assets/imgs/info.png);
+    }
+    &[class*="custom-gallery"] {
+        mask-image: url(../assets/imgs/gallery.png);
+    }
+    &[class*="custom-radio"] {
+    	width: 1.5em;
+        height: 1em;
+        mask-image: url(../assets/imgs/radio.png);
+    }
+    &[class*="custom-play"] {
+        mask-image: url(../assets/imgs/play.png);
+    }
+    &[class*="custom-pause"] {
+        mask-image: url(../assets/imgs/pause.png);
+    }
+}
+
+.tabs-md .tab-button-icon {
+    color: rgba(60, 60, 60, 0.3);
+}

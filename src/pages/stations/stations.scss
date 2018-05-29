@@ -1,4 +1,13 @@
 page-stations {
+
+	.selected {
+		color: #BF4049 !important;
+	}
+
+	.selectedborder {
+		border-bottom: solid 3px #BF4049 !important;
+	}
+
 	.scroll-content {
 		margin: 9px !important;
 	}
@@ -62,7 +71,7 @@ page-stations {
 
 	#left {
 		float: left;
-    	width: 60%;
+    	width: 55%;
     	height: 100%;
     	position: relative;
 	}
@@ -70,13 +79,16 @@ page-stations {
 	#right {
 		height: 100%;
 	    float: right;
-	    width: 40%;
+	    width: 45%;
 	} 
 
 	.select-image-container {
 		position: absolute;
 	  	padding-right: 14px;
 	  	padding-left: 14px;
+	  	float: left;
+	  	width: 95%;
+	  	position: relative;
 	}
 
 	.select-image {
@@ -86,15 +98,15 @@ page-stations {
 
 	.select-station-container {
 		position: absolute;
-	  	padding-left: 14px;
-	  	padding-right: 20px;
+	  	padding-left: 10px;
+	  	padding-right: 28px;
 	}
 
 	.channels {
 		font-size: 20px;
 		font-family: "HelveticaNeueLTCom-Lt";
 		line-height: 20px;
-		color: #bf4049 !important;
+		color: #D1A7B8;
 		padding-bottom: 14px;
 		border-bottom: solid 3px #bf4049;
 		margin-bottom: 14px;
@@ -103,14 +115,15 @@ page-stations {
 
 	.station {
 		padding-bottom: 4px;
-		border-bottom: solid 3px #bf4049;
+		border-bottom: solid 3px #D1A7B8;
 		margin-bottom: 10px;
 	}
 
 	.station-name{
 		font-size: 36px;
 		font-family: "Bodoni";
-		color: #bf4049 !important;
+		color: #B7809C;
+		line-height: 38px;
 	}
 
 	.station p {
@@ -126,7 +139,7 @@ page-stations {
 	.fm {
 		font-size: 36px;
 		font-family: "Bodoni";
-		color: #bf4049 !important;
+		color: #D1A7B8 !important;
 	}
 
 	.description {
@@ -137,8 +150,8 @@ page-stations {
 	}
 
 	.border {
-		border-bottom: solid 3px #bf4049;
-		padding-bottom: 14px;
-		margin-bottom: 14px;
+		border-bottom: solid 3px #D1A7B8;
+		padding-bottom: 12px;
+		margin-bottom: 12px;
 	}
 }

@@ -113,12 +113,23 @@ export class AudioProvider {
 		clearInterval(this.infoTimer);
 	}
 
-	getInfo(){
+	getInfo(stationIndex){
 		return new Promise((resolve, reject) => {
-			this.http.get(this.config.METADATA_URL).subscribe( data => {
+			this.http.get(this.stations[stationIndex].METADATA_URL).subscribe( data => {
 				if(data && data.hasOwnProperty('icestats')){
 					let stations = data['icestats']['source'];
-					resolve(stations);
+					let info = {
+						title: ""
+					};
+
+					for(let i = 0; i < stations.length; i++){
+						if(this.stations[stationIndex].name == stations[i].server_name || this.stations[stationIndex].alias == stations[i].server_name){
+							info = stations[i];
+							info.index = stationIndex;
+							break;
+						}
+					}
+					resolve(info);
 				}
 			});
 		});
@@ -126,15 +137,17 @@ export class AudioProvider {
 
 	getStreamInfo() {
 		let index = Number(localStorage.getItem("stationIndex"));
-		this.http.get(this.config.METADATA_URL).subscribe( data => {
+		this.http.get(this.stations[index].METADATA_URL).subscribe( data => {
 			if(data && data.hasOwnProperty('icestats')){
 				let stations = data['icestats']['source'];
 				let info = {
-					title: ""
+					title: "",
+					index: index
 				};
 
+
 				for(let i = 0; i < stations.length; i++){
-					if(this.stations[index].name == stations[i].server_name){
+					if(this.stations[index].name == stations[i].server_name || this.stations[index].alias == stations[i].server_name){
 						info = stations[i];
 						break;
 					}

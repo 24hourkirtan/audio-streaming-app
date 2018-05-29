@@ -9,7 +9,7 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class IntroPage {
 
-  text : string = "Welcome to the world of Kirtan, the radio app for traditional Kirtan and contemporary Vaishnava music.";
+  text : string = "Welcome to the <br>world of Kirtan, <br>the radio app <br>for traditional <br>Kirtan and <br>contemporary <br>Vaishnava music.";
   loadProgress: any = 0;
   angle : any = 0;
 
@@ -30,6 +30,6 @@ export class IntroPage {
 
 	setTimeout(() => {
 	    this.navCtrl.setRoot(TabsPage);
-	}, 5000);
+	}, 0);
   }
 }

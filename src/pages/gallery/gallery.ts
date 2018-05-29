@@ -35,7 +35,6 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser
  			this.visible = false;
  		}, this.fadeTimer);
 
- 		console.log(this.file);
  		this.gallery = localStorage.getItem("gallery");
  		if(this.gallery){
  			this.file.listDir(this.file.applicationDirectory, 'www/assets/imgs/galleries/' + this.gallery).then(photos => {
@@ -58,7 +57,6 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser
  	}
 
  	selectBackground(gallery){
- 	console.log(gallery);
  		localStorage.setItem("gallery", gallery);
  		this.gallery = gallery;
  		

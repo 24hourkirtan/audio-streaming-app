@@ -12,6 +12,8 @@ export class StationsPage {
   stations : any = [];
   title : string = "";
   temp: any = [];
+  infoTimer: any;
+  selectedIndex: any = 0;
 
   constructor(public events: Events, public audio : AudioProvider, private toastCtrl: ToastController) {
     this.stations = audio.getStations();
@@ -31,6 +33,10 @@ export class StationsPage {
     });
     toast.present();
     */
+    for(var i = 0; i < this.stations.length; i++){
+      this.stations[i].selected = false;
+    }
+    this.stations[index].selected = true;
     this.audio.stop();
     this.audio.init();
     this.audio.play();
@@ -40,20 +46,30 @@ export class StationsPage {
   ionViewDidLoad(){
     var self = this;
     this.title = this.audio.getTrackTitle();
-    
-    self.audio.getInfo().then(stations => {
-      if(stations){
-        this.temp = stations;
-        for(var i = 0; i < self.stations.length; i++){
-          for(var j = 0; j < this.temp.length; j++){
-            if(self.stations[i].name == this.temp[j].server_name){
-              self.stations[i].title = this.temp[j].title;
-              self.stations[i].artist = this.temp[j].title.split('-')[0];
-              self.stations[i].description = this.temp[j].server_description;
-            }
-          }
-        }
+
+    for(var i = 0; i < self.stations.length; i++){
+      self.audio.getInfo(i).then(info => {
+      console.log(info);
+        self.stations[info.index].title = info.title;
+        self.stations[info.index].artist = info.title.split('-')[0];
+        self.stations[info.index].description = info.server_description;
+      });
+    }
+
+    for(var i = 0; i < self.stations.length; i++){
+      self.stations[i].selected = false;
+    }
+    let index = Number(localStorage.getItem("stationIndex")) ? Number(localStorage.getItem("stationIndex")) : 0;
+    this.stations[index].selected = true;
+
+    this.infoTimer = setInterval(()=>{
+      for(var i = 0; i < self.stations.length; i++){
+        self.audio.getInfo(i).then(info => {
+          self.stations[info.index].title = info.title;
+          self.stations[info.index].artist = info.title.split('-')[0];
+          self.stations[info.index].description = info.server_description;
+        });
       }
-    });
+    }, 5000);
   }
 }

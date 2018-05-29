@@ -9,14 +9,14 @@
 	    	</div>
 	    	-->
 	    	<div class="description">
-	    		<b>01</b> Gaudiya style Kirtan from temples & events worldwide.
+	    		<b>01</b> Gaudiya style <br>Kirtan from temples <br>& events worldwide.
 	    	</div>
 	    	<div class="description">
-	    		<b>02</b> Contemporary Vaishnava music.
+	    		<b>02</b> Contemporary <br>Vaishnava music.
 	    	</div>
 	    	<div class="border"></div>
-			<div class="station" *ngFor="let station of stations; index as i" (click)="selectStation(i)">
-				<div class="station-name">{{station.name}}</div>
+			<div class="station" *ngFor="let station of stations; index as i" (click)="selectStation(i)" [class.selectedborder]="station.selected">
+				<div class="station-name" [class.selected]="station.selected">{{station.name}}</div>
 				<p>Now: {{station.artist}}</p>
 			</div>
 			<div class="fm">.fm</div>
@@ -24,9 +24,7 @@
 	</div>
 	<div id="right">
 		<div class="select-image-container">
-			<img src="assets/imgs/1.png" class="select-image">
-			<img src="assets/imgs/2.png" class="select-image">
-			<img src="assets/imgs/3.png" class="select-image">
+			<img src="assets/imgs/decor.png" class="select-image">
 		</div>
 	</div>
 </ion-content>
