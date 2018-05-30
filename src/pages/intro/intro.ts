@@ -30,6 +30,6 @@ export class IntroPage {
 
 	setTimeout(() => {
 	    this.navCtrl.setRoot(TabsPage);
-	}, 0);
+	}, 5000);
   }
 }
