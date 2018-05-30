@@ -16,20 +16,20 @@ export class IntroPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	setInterval(() => {
   		if(this.loadProgress < 100){
-			this.loadProgress += 0.24;
+			  this.loadProgress += 1;
   		}
   		this.angle += 1;
 
   		if(this.angle > 360)
   			this.angle = 0;
-	}, 10);
+	}, 50);
 
 	setTimeout(() => {
 		this.text = "Hare Krishna,<br>Hare Krishna,<br>Krishna Krishna,<br>Hare Krishna,<br>Hare Rama,<br>Hare Rama,<br>Rama Rama,<br>Hare Hare.";
+    setTimeout(() => {
+      this.navCtrl.setRoot(TabsPage);
+    }, 2500);
 	}, 2500);
 
-	setTimeout(() => {
-	    this.navCtrl.setRoot(TabsPage);
-	}, 5000);
   }
 }
